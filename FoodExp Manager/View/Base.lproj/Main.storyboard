@@ -40,7 +40,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Food" id="WCi-7U-lRj">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="fRs-JQ-ERp">
-                            <color key="tintColor" red="0.64231099359999999" green="0.8423577203" blue="0.84267407660000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="addButtonPressed:" destination="3O3-bl-VGG" id="0Xh-7V-SKL"/>
                             </connections>
@@ -100,7 +99,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Category" id="Qrb-oG-95h">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="6Q2-hY-Wms">
-                            <color key="tintColor" red="0.46138404220000001" green="0.84267407660000004" blue="0.8072402139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="addButtonPressed:" destination="4ah-Gl-X84" id="1Q4-fD-iqy"/>
                             </connections>
