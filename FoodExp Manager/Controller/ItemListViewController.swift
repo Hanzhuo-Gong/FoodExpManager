@@ -11,6 +11,14 @@ import CoreData
 class ItemListViewController: UITableViewController {
     
     var foodArray = [Food]()
+    //TODO: Check if I have to delete the didSet, because need  to send this variable to add Item
+    var selectedCategory : Category? {
+        //when a selectedCategory is selected, load the corresponding items in that category
+        
+        didSet {
+            loadItems()
+        }
+    }
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -20,7 +28,7 @@ class ItemListViewController: UITableViewController {
         // Do any additional setup after loading the view.
         
         tableView.rowHeight = 80.0
-        loadItems()
+        //loadItems()
     }
 
     //MARK - TableView Datasource Methods
@@ -49,7 +57,6 @@ class ItemListViewController: UITableViewController {
     
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        //print("add button presseed")
         
         //TODO - Create a New UI for the food page, and place the function in there
         var textField = UITextField()
@@ -58,6 +65,7 @@ class ItemListViewController: UITableViewController {
             
             let newFood = Food(context: self.context)
             newFood.name = textField.text
+            newFood.parentCategory = self.selectedCategory
             self.foodArray.append(newFood)
             self.saveItems()
         }
@@ -87,7 +95,16 @@ class ItemListViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func loadItems(with request: NSFetchRequest<Food> = Food.fetchRequest()) {
+    func loadItems(with request: NSFetchRequest<Food> = Food.fetchRequest(), predicate: NSPredicate? = nil) {
+        
+        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+        
+        //Since the predicate is option, need a safe method to check if data is safe to continue
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
+        } else {
+            request.predicate = categoryPredicate
+        }
         
         do {
             foodArray = try context.fetch(request)
@@ -105,11 +122,11 @@ extension ItemListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //TODO: change to firebase fetchrequest later
         let request : NSFetchRequest<Food> = Food.fetchRequest()
+        let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
         
-        request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         
-        loadItems(with: request)
+        loadItems(with: request, predicate: predicate)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
