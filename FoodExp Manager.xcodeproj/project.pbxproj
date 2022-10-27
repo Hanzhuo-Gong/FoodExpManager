@@ -15,6 +15,7 @@
 		64D5109928FD1201003B2E30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D5109728FD1201003B2E30 /* LaunchScreen.storyboard */; };
 		64D510C828FD13B2003B2E30 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 64D510C628FD13B2003B2E30 /* DataModel.xcdatamodeld */; };
 		64D510CA29079643003B2E30 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D510C929079643003B2E30 /* CategoryViewController.swift */; };
+		64D510CC290A4E07003B2E30 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D510CB290A4E07003B2E30 /* SwipeTableViewController.swift */; };
 		9DBF2E1AAEF9875A310BE363 /* Pods_FoodExp_Manager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55468770414D00A6ACB45604 /* Pods_FoodExp_Manager.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		64D5109A28FD1201003B2E30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64D510C728FD13B2003B2E30 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		64D510C929079643003B2E30 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		64D510CB290A4E07003B2E30 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		C400A9B5DAB683124AE08645 /* Pods-FoodExp Manager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodExp Manager.debug.xcconfig"; path = "Target Support Files/Pods-FoodExp Manager/Pods-FoodExp Manager.debug.xcconfig"; sourceTree = "<group>"; };
 		F61ED9490A116917049AA44E /* Pods-FoodExp Manager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodExp Manager.release.xcconfig"; path = "Target Support Files/Pods-FoodExp Manager/Pods-FoodExp Manager.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,7 +54,6 @@
 				C400A9B5DAB683124AE08645 /* Pods-FoodExp Manager.debug.xcconfig */,
 				F61ED9490A116917049AA44E /* Pods-FoodExp Manager.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -102,6 +103,7 @@
 			children = (
 				64D510C929079643003B2E30 /* CategoryViewController.swift */,
 				64D5109028FD1200003B2E30 /* ItemListViewController.swift */,
+				64D510CB290A4E07003B2E30 /* SwipeTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -241,6 +243,7 @@
 				64D5109128FD1200003B2E30 /* ItemListViewController.swift in Sources */,
 				64D510C828FD13B2003B2E30 /* DataModel.xcdatamodeld in Sources */,
 				64D5108D28FD1200003B2E30 /* AppDelegate.swift in Sources */,
+				64D510CC290A4E07003B2E30 /* SwipeTableViewController.swift in Sources */,
 				64D5108F28FD1200003B2E30 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

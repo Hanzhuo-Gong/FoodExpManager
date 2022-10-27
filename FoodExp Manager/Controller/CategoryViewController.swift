@@ -7,9 +7,9 @@
 
 import UIKit
 import CoreData
-import SwipeCellKit
 
-class CategoryViewController: UITableViewController {
+
+class CategoryViewController: SwipeTableViewController {
 
     var categoryArray = [Category]()
     
@@ -31,9 +31,10 @@ class CategoryViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! SwipeTableViewCell
+        
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = categoryArray[indexPath.row].name
-        cell.delegate = self
+        //cell.delegate = self
         
         return cell
     }
@@ -82,6 +83,19 @@ class CategoryViewController: UITableViewController {
         tableView.reloadData()
     }
 
+    //MARK: - Delete Data From Swipe
+    override func updateModel(at indexPath: IndexPath) {
+        context.delete(categoryArray[indexPath.row])
+        categoryArray.remove(at: indexPath.row)
+        //self.saveCategories()
+
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+    }
+    
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
         var textField = UITextField()
@@ -94,7 +108,12 @@ class CategoryViewController: UITableViewController {
             self.saveCategories()
         }
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            //Cancel action, no code is required in here
+        }
+        
         alert.addAction(action)
+        alert.addAction(cancelAction)
         alert.addTextField { (field) in
             textField = field
             textField.placeholder = "Add new category"
@@ -106,19 +125,3 @@ class CategoryViewController: UITableViewController {
     
 }
 
-extension CategoryViewController : SwipeTableViewCellDelegate {
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            // handle action by updating model with deletion
-            print("delete button pressed")
-        }
-
-        // customize the action appearance
-        deleteAction.image = UIImage(named: "delete-icon")
-
-        return [deleteAction]
-    }
-}
