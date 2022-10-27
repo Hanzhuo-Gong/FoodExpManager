@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class ItemListViewController: UITableViewController {
+class ItemListViewController: SwipeTableViewController {
     
     var foodArray = [Food]()
     //TODO: Check if I have to delete the didSet, because need  to send this variable to add Item
@@ -38,7 +38,7 @@ class ItemListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = foodArray[indexPath.row].name
         
         return cell
@@ -47,10 +47,8 @@ class ItemListViewController: UITableViewController {
     //MARK - TableView Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //Delete item for testing
-        context.delete(foodArray[indexPath.row])
-        foodArray.remove(at: indexPath.row)
-        saveItems()
+        //TODO: Need to perform segue to the Item Detail Page
+        
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -70,12 +68,17 @@ class ItemListViewController: UITableViewController {
             self.saveItems()
         }
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            //Cancel action, no code is required in here
+        }
+        
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Create new food"
             textField = alertTextField
         }
         
         alert.addAction(action)
+        alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
     
@@ -113,6 +116,18 @@ class ItemListViewController: UITableViewController {
         }
         
         tableView.reloadData()
+    }
+    
+    override func updateModel(at indexPath: IndexPath) {
+        //Delete item for testing
+        context.delete(foodArray[indexPath.row])
+        foodArray.remove(at: indexPath.row)
+        
+        do {
+            try self.context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
     }
     
 }
