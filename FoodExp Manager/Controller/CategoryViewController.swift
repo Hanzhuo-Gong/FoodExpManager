@@ -16,6 +16,19 @@ class CategoryViewController: SwipeTableViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     
+    //Initialize the Category Service
+    private let validation: CategoryValidationService
+    
+    init(validation: CategoryValidationService) {
+        self.validation = validation
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.validation = CategoryValidationService()
+        super.init(coder: coder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -102,10 +115,25 @@ class CategoryViewController: SwipeTableViewController {
         let alert = UIAlertController(title: "Add New Category", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             
-            let newCategory = Category(context: self.context)
-            newCategory.name = textField.text!
-            self.categoryArray.append(newCategory)
-            self.saveCategories()
+            do {
+                let categoryName = try self.validation.validateCategoryName(textField.text!)
+                let newCategory = Category(context: self.context)
+                newCategory.name = categoryName
+                self.categoryArray.append(newCategory)
+                self.saveCategories()
+            } catch {
+                
+                let errorAlert = UIAlertController(title: "Invalid Category Name", message: "Category can't be empty \nplease enter again", preferredStyle: .alert)
+                let errorAction = UIAlertAction(title: "Dismiss", style: .default)
+                errorAlert.addAction(errorAction)
+                self.present(errorAlert, animated: true, completion: nil)
+            }
+            
+            
+//            let newCategory = Category(context: self.context)
+//            newCategory.name = textField.text!
+//            self.categoryArray.append(newCategory)
+//            self.saveCategories()
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
@@ -125,3 +153,18 @@ class CategoryViewController: SwipeTableViewController {
     
 }
 
+//extension UIAlertController {
+//
+//    func isValidCategoryName(_ name: String) -> Bool {
+//
+//        return name.count > 0
+//    }
+//
+//    func textDidChangeInLoginAlert() {
+//        if let categoryName = textFields?[0].text,
+//
+//            let action = actions.last {
+//            action.isEnabled = isValidCategoryName(categoryName)
+//        }
+//    }
+//}
