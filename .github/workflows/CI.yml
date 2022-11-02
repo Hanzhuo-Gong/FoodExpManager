@@ -17,5 +17,5 @@ jobs:
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_14.0.1.app
       
-    - name: Run tests
-      run: xcodebuild test -project FoodExp_Manager.xcodeproj -scheme FoodExp_Manager -destination 'platform=iOS Simulator,name=iPhone 14,OS=15.0'
+    - name: Run unit tests
+      run: xcodebuild test -project FoodExpManager/FoodFoodExp_Manager.xcodeproj -scheme FoodExp_Manager -destination 'platform=iOS Simulator,name=iPhone 14,OS=15.0'
