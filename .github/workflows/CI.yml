@@ -18,4 +18,4 @@ jobs:
       run: sudo xcode-select -switch /Applications/Xcode_14.0.1.app
       
     - name: Run tests
-      run: xcodebuild test -scheme FoodExp-Manager -project FoodExpManager/FoodExp-Manager.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 14,OS=15.0'
+      run: xcodebuild test -workspace App/FoodExp_Manager.xcworkspace -scheme FoodExp_Manager -destination 'platform=iOS Simulator,name=iPhone 14,OS=15.0'
