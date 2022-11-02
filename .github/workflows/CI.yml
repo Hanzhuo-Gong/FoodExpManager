@@ -1,4 +1,4 @@
-name: Swift
+name: CI
 
 on:
   push:
@@ -18,4 +18,4 @@ jobs:
       run: sudo xcode-select -switch /Applications/Xcode_14.0.1.app
       
     - name: Run tests
-      run: xcodebuild test -scheme FoodExp_Manager -project FoodExpManager/FoodExp_Manager.xcworkspace -destination 'platform=iOS Simulator, name=iPhone 14, OS=15.0'
+      run: xcodebuild test -scheme FoodExp_Manager -project FoodExpManager/FoodExp_Manager.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 14,OS=15.0'
