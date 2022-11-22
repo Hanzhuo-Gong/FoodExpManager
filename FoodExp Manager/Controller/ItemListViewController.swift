@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import SwipeCellKit
 
 class ItemListViewController: SwipeTableViewController {
     
@@ -38,6 +39,7 @@ class ItemListViewController: SwipeTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        //let cell = super.tableView(tableView, cellForRowAt: indexPath)
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = foodArray[indexPath.row].name
         
@@ -48,8 +50,7 @@ class ItemListViewController: SwipeTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //TODO: Need to perform segue to the Item Detail Page
-        
-        
+        performSegue(withIdentifier: "ItemDetail", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -57,6 +58,8 @@ class ItemListViewController: SwipeTableViewController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
         //TODO - Create a New UI for the food page, and place the function in there
+        performSegue(withIdentifier: "AddItem", sender: self)
+        /*
         var textField = UITextField()
         let alert = UIAlertController(title: "Add New Food", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
@@ -80,6 +83,7 @@ class ItemListViewController: SwipeTableViewController {
         alert.addAction(action)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
+         */
     }
     
     
@@ -131,7 +135,34 @@ class ItemListViewController: SwipeTableViewController {
     }
     
 }
-
+/*
+//NARK: Swipe Cell Deletegate Methods
+extension ItemListViewController: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            // handle action by updating model with deletion
+            self.updateModel(at: indexPath)
+                        
+        }
+        
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "delete-icon")
+        
+        return [deleteAction]
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = .destructive
+        return options
+    }
+    
+}
+*/
+ 
 //MARK: - Search bar methods
 extension ItemListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -154,3 +185,4 @@ extension ItemListViewController: UISearchBarDelegate {
         }
     }
 }
+
