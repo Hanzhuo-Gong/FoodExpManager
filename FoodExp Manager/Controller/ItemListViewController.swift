@@ -7,8 +7,9 @@
 
 import UIKit
 import CoreData
+import SwipeCellKit
 
-class ItemListViewController: SwipeTableViewController {
+class ItemListViewController: UITableViewController {
     
     var foodArray = [Food]()
     //TODO: Check if I have to delete the didSet, because need  to send this variable to add Item
@@ -38,8 +39,10 @@ class ItemListViewController: SwipeTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        //let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! SwipeTableViewCell
         cell.textLabel?.text = foodArray[indexPath.row].name
+        cell.delegate = self
         
         return cell
     }
@@ -48,7 +51,7 @@ class ItemListViewController: SwipeTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //TODO: Need to perform segue to the Item Detail Page
-        
+        performSegue(withIdentifier: "AddItem", sender: self)
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -118,7 +121,7 @@ class ItemListViewController: SwipeTableViewController {
         tableView.reloadData()
     }
     
-    override func updateModel(at indexPath: IndexPath) {
+    func updateModel(at indexPath: IndexPath) {
         //Delete item for testing
         context.delete(foodArray[indexPath.row])
         foodArray.remove(at: indexPath.row)
@@ -128,6 +131,32 @@ class ItemListViewController: SwipeTableViewController {
         } catch {
             print("Error saving context \(error)")
         }
+    }
+    
+}
+
+//NARK: Swipe Cell Deletegate Methods
+extension ItemListViewController: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            // handle action by updating model with deletion
+            self.updateModel(at: indexPath)
+                        
+        }
+        
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "delete-icon")
+        
+        return [deleteAction]
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = .destructive
+        return options
     }
     
 }
@@ -154,3 +183,4 @@ extension ItemListViewController: UISearchBarDelegate {
         }
     }
 }
+
