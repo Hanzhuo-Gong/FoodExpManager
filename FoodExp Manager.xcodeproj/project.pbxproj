@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		644B9D8A292354FE0091677E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644B9D89292354FE0091677E /* Main.storyboard */; };
-		644B9D8E292D3FBB0091677E /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9D8D292D3FBB0091677E /* ItemDetailViewController.swift */; };
-		644B9D90292D3FD30091677E /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9D8F292D3FD30091677E /* AddItemViewController.swift */; };
+		644B9D92292D52C10091677E /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9D91292D52C10091677E /* ItemDetailViewController.swift */; };
+		644B9D94292D52DF0091677E /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9D93292D52DF0091677E /* AddItemViewController.swift */; };
 		64D5108D28FD1200003B2E30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5108C28FD1200003B2E30 /* AppDelegate.swift */; };
 		64D5108F28FD1200003B2E30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5108E28FD1200003B2E30 /* SceneDelegate.swift */; };
 		64D5109128FD1200003B2E30 /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5109028FD1200003B2E30 /* ItemListViewController.swift */; };
@@ -37,8 +37,8 @@
 /* Begin PBXFileReference section */
 		55468770414D00A6ACB45604 /* Pods_FoodExp_Manager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodExp_Manager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		644B9D89292354FE0091677E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/Main.storyboard"; sourceTree = "<group>"; };
-		644B9D8D292D3FBB0091677E /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
-		644B9D8F292D3FD30091677E /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		644B9D91292D52C10091677E /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		644B9D93292D52DF0091677E /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		64D5108928FD1200003B2E30 /* FoodExp Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FoodExp Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D5108C28FD1200003B2E30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64D5108E28FD1200003B2E30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,8 +135,8 @@
 				64D510C929079643003B2E30 /* CategoryViewController.swift */,
 				64D5109028FD1200003B2E30 /* ItemListViewController.swift */,
 				64D510CB290A4E07003B2E30 /* SwipeTableViewController.swift */,
-				644B9D8D292D3FBB0091677E /* ItemDetailViewController.swift */,
-				644B9D8F292D3FD30091677E /* AddItemViewController.swift */,
+				644B9D91292D52C10091677E /* ItemDetailViewController.swift */,
+				644B9D93292D52DF0091677E /* AddItemViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -321,10 +321,10 @@
 			files = (
 				64D510CA29079643003B2E30 /* CategoryViewController.swift in Sources */,
 				64D5109128FD1200003B2E30 /* ItemListViewController.swift in Sources */,
-				644B9D8E292D3FBB0091677E /* ItemDetailViewController.swift in Sources */,
+				644B9D92292D52C10091677E /* ItemDetailViewController.swift in Sources */,
 				64D510C828FD13B2003B2E30 /* DataModel.xcdatamodeld in Sources */,
 				64D5108D28FD1200003B2E30 /* AppDelegate.swift in Sources */,
-				644B9D90292D3FD30091677E /* AddItemViewController.swift in Sources */,
+				644B9D94292D52DF0091677E /* AddItemViewController.swift in Sources */,
 				64D8A1052910CD67009B72B1 /* CategoryValidationService.swift in Sources */,
 				64D510CC290A4E07003B2E30 /* SwipeTableViewController.swift in Sources */,
 				64D5108F28FD1200003B2E30 /* SceneDelegate.swift in Sources */,

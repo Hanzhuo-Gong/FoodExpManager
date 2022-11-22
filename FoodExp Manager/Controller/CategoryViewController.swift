@@ -7,10 +7,10 @@
 
 import UIKit
 import CoreData
-import SwipeCellKit
 
 
-class CategoryViewController: UITableViewController {
+
+class CategoryViewController: SwipeTableViewController {
 
     var categoryArray = [Category]()
     
@@ -45,11 +45,12 @@ class CategoryViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
+        /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! SwipeTableViewCell
-        
+         */
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = categoryArray[indexPath.row].name
-        cell.delegate = self
+        //cell.delegate = self
         
         return cell
     }
@@ -99,7 +100,7 @@ class CategoryViewController: UITableViewController {
     }
 
     //MARK: - Delete Data From Swipe
-    func updateModel(at indexPath: IndexPath) {
+    override func updateModel(at indexPath: IndexPath) {
         context.delete(categoryArray[indexPath.row])
         categoryArray.remove(at: indexPath.row)
         //self.saveCategories()
@@ -154,8 +155,8 @@ class CategoryViewController: UITableViewController {
     
     
 }
-
-//NARK: Swipe Cell Deletegate Methods
+/*
+//MARK: Swipe Cell Deletegate Methods
 extension CategoryViewController: SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
@@ -180,6 +181,7 @@ extension CategoryViewController: SwipeTableViewCellDelegate {
     }
     
 }
+*/
 
 //extension UIAlertController {
 //

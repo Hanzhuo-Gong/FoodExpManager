@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 import SwipeCellKit
 
-class ItemListViewController: UITableViewController {
+class ItemListViewController: SwipeTableViewController {
     
     var foodArray = [Food]()
     //TODO: Check if I have to delete the didSet, because need  to send this variable to add Item
@@ -40,9 +40,8 @@ class ItemListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! SwipeTableViewCell
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = foodArray[indexPath.row].name
-        cell.delegate = self
         
         return cell
     }
@@ -51,8 +50,7 @@ class ItemListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //TODO: Need to perform segue to the Item Detail Page
-        performSegue(withIdentifier: "AddItem", sender: self)
-        
+        performSegue(withIdentifier: "ItemDetail", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -60,6 +58,8 @@ class ItemListViewController: UITableViewController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
         //TODO - Create a New UI for the food page, and place the function in there
+        performSegue(withIdentifier: "AddItem", sender: self)
+        /*
         var textField = UITextField()
         let alert = UIAlertController(title: "Add New Food", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
@@ -83,6 +83,7 @@ class ItemListViewController: UITableViewController {
         alert.addAction(action)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
+         */
     }
     
     
@@ -121,7 +122,7 @@ class ItemListViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    func updateModel(at indexPath: IndexPath) {
+    override func updateModel(at indexPath: IndexPath) {
         //Delete item for testing
         context.delete(foodArray[indexPath.row])
         foodArray.remove(at: indexPath.row)
@@ -134,7 +135,7 @@ class ItemListViewController: UITableViewController {
     }
     
 }
-
+/*
 //NARK: Swipe Cell Deletegate Methods
 extension ItemListViewController: SwipeTableViewCellDelegate {
     
@@ -160,7 +161,8 @@ extension ItemListViewController: SwipeTableViewCellDelegate {
     }
     
 }
-
+*/
+ 
 //MARK: - Search bar methods
 extension ItemListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
