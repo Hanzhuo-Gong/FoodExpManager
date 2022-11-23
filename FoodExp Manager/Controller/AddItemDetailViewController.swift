@@ -1,5 +1,5 @@
 //
-//  AddItemViewController.swift
+//  AddItemDetailViewController.swift
 //  FoodExp Manager
 //
 //  Created by Hanzhuo Gong on 11/22/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddItemViewController: UIViewController {
+class AddItemDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
