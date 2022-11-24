@@ -216,7 +216,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bRx-2K-k1u">
-                                <rect key="frame" x="40" y="131" width="310" height="416"/>
+                                <rect key="frame" x="40" y="131" width="310" height="516.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TqB-TK-xZv">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="20.333333333333332"/>
@@ -243,16 +243,28 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HvB-af-MEr">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fresh Lifetime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MNf-mP-Fnb">
                                         <rect key="frame" x="0.0" y="200.66666666666669" width="310" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please select the expiration date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wv7-83-fY8">
+                                        <rect key="frame" x="0.0" y="241" width="310" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HvB-af-MEr">
+                                        <rect key="frame" x="0.0" y="301" width="310" height="20.333333333333314"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="EiP-hp-m5Y">
-                                        <rect key="frame" x="0.0" y="241.00000000000003" width="310" height="34.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="341.33333333333331" width="310" height="34.333333333333314"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="5" borderStyle="roundedRect" placeholder="Please enter the quantity of the item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="97A-0u-pqu">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please enter the quantity of the item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="97A-0u-pqu">
                                                 <rect key="frame" x="0.0" y="0.0" width="234" height="34.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -274,19 +286,19 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7qt-af-joG">
-                                        <rect key="frame" x="0.0" y="295.33333333333331" width="310" height="20.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="395.66666666666663" width="310" height="20.333333333333314"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Testing" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ugf-yK-QcG">
-                                        <rect key="frame" x="0.0" y="335.66666666666669" width="310" height="40"/>
+                                        <rect key="frame" x="0.0" y="436" width="310" height="40"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExH-FA-6Z8">
-                                        <rect key="frame" x="0.0" y="395.66666666666663" width="310" height="20.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="496" width="310" height="20.333333333333371"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
@@ -294,6 +306,8 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Ugf-yK-QcG" firstAttribute="height" secondItem="pni-nM-1ez" secondAttribute="height" id="Ibo-oJ-GiZ"/>
+                                    <constraint firstItem="cB6-Kp-poh" firstAttribute="height" secondItem="pni-nM-1ez" secondAttribute="height" id="ish-8p-lIE"/>
+                                    <constraint firstItem="wv7-83-fY8" firstAttribute="height" secondItem="pni-nM-1ez" secondAttribute="height" id="juA-E5-nbI"/>
                                     <constraint firstItem="cB6-Kp-poh" firstAttribute="height" secondItem="pni-nM-1ez" secondAttribute="height" id="zb8-vX-WUz"/>
                                 </constraints>
                             </stackView>
@@ -307,6 +321,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Item" id="WKc-6H-K9E"/>
+                    <connections>
+                        <outlet property="categoryTextField" destination="Ugf-yK-QcG" id="7dx-AD-88Y"/>
+                        <outlet property="errorLabel" destination="ExH-FA-6Z8" id="QUn-WS-v0Z"/>
+                        <outlet property="expirationDateTextField" destination="cB6-Kp-poh" id="bzc-i5-0cJ"/>
+                        <outlet property="freshLifetimeTextField" destination="wv7-83-fY8" id="Omo-aG-IHs"/>
+                        <outlet property="nameTextField" destination="pni-nM-1ez" id="c2g-Rj-Yro"/>
+                        <outlet property="quantityTextField" destination="97A-0u-pqu" id="jZG-YV-qDH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2od-cw-JKR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
