@@ -252,7 +252,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="EiP-hp-m5Y">
                                         <rect key="frame" x="0.0" y="241.00000000000003" width="310" height="34.333333333333343"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="5" borderStyle="roundedRect" placeholder="Please enter the quantity of the item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="97A-0u-pqu">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please enter the quantity of the item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="97A-0u-pqu">
                                                 <rect key="frame" x="0.0" y="0.0" width="234" height="34.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -307,6 +307,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Item" id="WKc-6H-K9E"/>
+                    <connections>
+                        <outlet property="categoryTextField" destination="Ugf-yK-QcG" id="7dx-AD-88Y"/>
+                        <outlet property="errorLabel" destination="ExH-FA-6Z8" id="QUn-WS-v0Z"/>
+                        <outlet property="expirationDateTextField" destination="cB6-Kp-poh" id="bzc-i5-0cJ"/>
+                        <outlet property="nameTextField" destination="pni-nM-1ez" id="c2g-Rj-Yro"/>
+                        <outlet property="quantityTextField" destination="97A-0u-pqu" id="jZG-YV-qDH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2od-cw-JKR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
