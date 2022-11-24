@@ -14,6 +14,7 @@ class AddItemDetailViewController: UIViewController {
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var freshLifetimeTextField: UITextField!
     
     let datePicker = UIDatePicker()
     
@@ -64,10 +65,12 @@ class AddItemDetailViewController: UIViewController {
         formatter.dateStyle = .short
         let expirationDateShort = formatter.string(from: datePicker.date)
         errorLabel.text = expirationDateShort
-        print(expirationDateShort)
         
-        let currentDate = Date().localizedDescription(date: .short)
-        print(currentDate)
+        let currentDate = Date()
+        
+        // Difference in day
+        let diffInDays = Calendar.current.dateComponents([.day], from: currentDate, to: datePicker.date).day! + 1
+        freshLifetimeTextField.text = String(diffInDays)
         
         self.view.endEditing(true)
     }
