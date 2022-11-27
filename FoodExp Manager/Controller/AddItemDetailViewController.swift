@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class AddItemDetailViewController: UIViewController {
 
@@ -20,11 +21,16 @@ class AddItemDetailViewController: UIViewController {
     let datePicker = UIDatePicker()
     let db = Firestore.firestore()
     var selectedCategoryInDetailPage : Category?
+    var categoryFoodArray : [Food]?
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElements()
         createDatepicker()
+        print("page food array: \(categoryFoodArray ?? [])")
     }
     
     func setUpElements() {
@@ -97,28 +103,43 @@ class AddItemDetailViewController: UIViewController {
         if let name = nameTextField.text,
            let quantity = quantityTextField.text,
            let lifetime = freshLifetimeTextField.text,
-           let expirationDate = expirationDateTextField.text,
-           let category = categoryTextField.text {
-            print("uuid: \(uuid)")
-            print("name: \(name)")
-            print("quantity: \(quantity)")
-            print("lifetime: \(lifetime)")
-            print("expiration Date: \(expirationDate)")
-            print("cateogry: \(category)")
+           let expirationDate = expirationDateTextField.text {
             
+//            print("uuid: \(uuid)")
+//            print("name: \(name)")
+//            print("quantity: \(quantity)")
+//            print("lifetime: \(lifetime)")
+//            print("expiration Date: \(expirationDate)")
+             
+            
+            let newFood = Food(context: self.context)
+            newFood.id = uuid
+            newFood.name = name
+            newFood.quantity = quantity
+            newFood.lifetime = lifetime
+            newFood.expirationDate = expirationDate
+            newFood.parentCategory = self.selectedCategoryInDetailPage
+            
+            self.saveItems()
         }
-        print("Submit button pressed")
+        performSegue(withIdentifier: "ItemAddedFromCustom", sender: self)
+        
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let destinationVC = segue.destination as! ItemListViewController
+        
+        destinationVC.selectedCategory = selectedCategoryInDetailPage
+    
     }
-    */
-
+    
+    func saveItems() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+    }
 }
 
 //MARK: date extension

@@ -10,10 +10,11 @@ import UIKit
 class AddItemTableViewController: UITableViewController {
 
     var passingCategoryValue : Category?
+    var passingFoodArrayValue : [Food]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //print("Food array: \(passingFoodArrayValue ?? [])")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -97,6 +98,7 @@ class AddItemTableViewController: UITableViewController {
         let destinationVC = segue.destination as! AddItemDetailViewController
         
         destinationVC.selectedCategoryInDetailPage = passingCategoryValue
+        destinationVC.categoryFoodArray = passingFoodArrayValue
     }
 }
 

@@ -5,11 +5,11 @@
         <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Food" inverseName="parentCategory" inverseEntity="Food"/>
     </entity>
     <entity name="Food" representedClassName=".Food" syncable="YES" codeGenerationType="class">
-        <attribute name="expirationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="lifetime" optional="YES" attributeType="String"/>
+        <attribute name="expirationDate" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="lifetime" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="quantity" optional="YES" attributeType="String"/>
+        <attribute name="quantity" attributeType="String"/>
         <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="relationship" inverseEntity="Category"/>
     </entity>
 </model>

@@ -35,7 +35,7 @@ class CategoryViewController: SwipeTableViewController {
 
         tableView.rowHeight = 80.0
         loadCategories()
-        
+        //print("Category dataPath: \(dataFilePath)")
     }
 
     //MARK: - TableView Datasource Methods

@@ -13,11 +13,11 @@
             <objects>
                 <viewController id="2bM-Yv-UBf" customClass="ItemDetailViewController" customModule="FoodExp_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zv5-56-ycq">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="iNW-bf-n7F">
-                                <rect key="frame" x="40" y="131.00000000000003" width="310" height="481.66666666666674"/>
+                                <rect key="frame" x="40" y="87.000000000000028" width="310" height="481.66666666666674"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrn-ne-jRR">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="20.333333333333332"/>
@@ -26,7 +26,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jwc-VC-Hnb">
-                                        <rect key="frame" x="0.0" y="40.333333333333343" width="310" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="40.333333333333329" width="310" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -37,7 +37,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fresh Lifetime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xn-ae-d6e">
-                                        <rect key="frame" x="0.0" y="140.66666666666669" width="310" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="140.66666666666666" width="310" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -65,7 +65,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Testing" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WOs-DJ-jQO">
-                                        <rect key="frame" x="0.0" y="381.66666666666663" width="310" height="40"/>
+                                        <rect key="frame" x="0.0" y="381.66666666666669" width="310" height="40"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="w8X-3E-M9n"/>
@@ -108,6 +108,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="gu6-5Y-52D"/>
+                    <connections>
+                        <outlet property="expirationDateLabel" destination="zrn-ne-jRR" id="rUH-4E-KkX"/>
+                        <outlet property="lifeTimeTextField" destination="ZFa-0q-Trg" id="r1N-pv-TuY"/>
+                        <outlet property="nameTextField" destination="uEe-8e-Dfh" id="Icr-jd-hEQ"/>
+                        <outlet property="quantityTextField" destination="d6M-ue-PrM" id="rMK-0S-Kfc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PYa-vG-LE0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -118,7 +124,7 @@
             <objects>
                 <tableViewController id="3O3-bl-VGG" customClass="ItemListViewController" customModule="FoodExp_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Hgf-T5-8sp">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Please search a food name" id="etn-MP-jMt">
@@ -165,7 +171,7 @@
             <objects>
                 <tableViewController id="sXh-5K-p2x" customClass="AddItemTableViewController" customModule="FoodExp_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Poh-Zh-eRS">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Please enter the name" id="jBi-LC-56m">
@@ -211,11 +217,11 @@
             <objects>
                 <viewController id="VZQ-Zp-Yxp" customClass="AddItemDetailViewController" customModule="FoodExp_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yNZ-or-zxx">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bRx-2K-k1u">
-                                <rect key="frame" x="40" y="131" width="310" height="570.66666666666663"/>
+                                <rect key="frame" x="40" y="87" width="310" height="570.66666666666663"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TqB-TK-xZv">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="20.333333333333332"/>
@@ -224,7 +230,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please enter the name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pni-nM-1ez">
-                                        <rect key="frame" x="0.0" y="40.333333333333343" width="310" height="40"/>
+                                        <rect key="frame" x="0.0" y="40.333333333333329" width="310" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="RzG-0m-Fs4"/>
                                         </constraints>
@@ -238,7 +244,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please Enter the expiration date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cB6-Kp-poh">
-                                        <rect key="frame" x="0.0" y="140.66666666666669" width="310" height="40"/>
+                                        <rect key="frame" x="0.0" y="140.66666666666666" width="310" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -291,7 +297,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7qt-af-joG">
-                                        <rect key="frame" x="0.0" y="395.66666666666663" width="310" height="20.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="395.66666666666669" width="310" height="20.333333333333314"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -343,6 +349,7 @@
                         <outlet property="freshLifetimeTextField" destination="wv7-83-fY8" id="Omo-aG-IHs"/>
                         <outlet property="nameTextField" destination="pni-nM-1ez" id="c2g-Rj-Yro"/>
                         <outlet property="quantityTextField" destination="97A-0u-pqu" id="jZG-YV-qDH"/>
+                        <segue destination="3O3-bl-VGG" kind="show" identifier="ItemAddedFromCustom" id="S9i-Rb-BMb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2od-cw-JKR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -533,6 +540,10 @@
             <point key="canvasLocation" x="953.84615384615381" y="1552.6066350710901"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="p0V-BE-BgT"/>
+        <segue reference="S9i-Rb-BMb"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="category-icon" width="32" height="32"/>
         <image name="favorite-icon" width="32" height="32"/>
