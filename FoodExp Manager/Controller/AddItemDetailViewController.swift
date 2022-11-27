@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AddItemDetailViewController: UIViewController {
 
@@ -17,20 +18,21 @@ class AddItemDetailViewController: UIViewController {
     @IBOutlet weak var freshLifetimeTextField: UITextField!
     
     let datePicker = UIDatePicker()
+    let db = Firestore.firestore()
+    var selectedCategoryInDetailPage : Category?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElements()
         createDatepicker()
-        
-        
     }
     
     func setUpElements() {
+        let categoryName = selectedCategoryInDetailPage?.name
         //errorLabel.alpha = 0
         nameTextField.text = "Banana"
         quantityTextField.text = "6"
-        categoryTextField.text = "Fruite"
+        categoryTextField.text = categoryName
     }
     
     func createToolbar() -> UIToolbar {
@@ -75,6 +77,38 @@ class AddItemDetailViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    @IBAction func substractBtnPressed(_ sender: Any) {
+        var temp = Int(quantityTextField.text ?? "0")
+        if(temp! > 0) {
+           temp! -= 1
+        }
+        quantityTextField.text = String(temp!)
+    }
+    
+    @IBAction func addBtnPressed(_ sender: Any) {
+        var temp = Int(quantityTextField.text ?? "0")
+        temp! += 1
+        quantityTextField.text = String(temp!)
+    }
+    
+    @IBAction func submitBtnPressed(_ sender: UIButton) {
+        //if let
+        let uuid = UUID().uuidString
+        if let name = nameTextField.text,
+           let quantity = quantityTextField.text,
+           let lifetime = freshLifetimeTextField.text,
+           let expirationDate = expirationDateTextField.text,
+           let category = categoryTextField.text {
+            print("uuid: \(uuid)")
+            print("name: \(name)")
+            print("quantity: \(quantity)")
+            print("lifetime: \(lifetime)")
+            print("expiration Date: \(expirationDate)")
+            print("cateogry: \(category)")
+            
+        }
+        print("Submit button pressed")
+    }
     /*
     // MARK: - Navigation
 

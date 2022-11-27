@@ -11,6 +11,10 @@
 		644B9D97292D93B50091677E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644B9D95292D93B50091677E /* Main.storyboard */; };
 		644B9D99292D9BA40091677E /* AddItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9D98292D9BA40091677E /* AddItemTableViewController.swift */; };
 		644B9D9B292D9E500091677E /* AddItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9D9A292D9E500091677E /* AddItemDetailViewController.swift */; };
+		644B9D9D292F4B980091677E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 644B9D9C292F4B970091677E /* GoogleService-Info.plist */; };
+		644B9DA3292F53520091677E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 644B9DA2292F53520091677E /* FirebaseAnalytics */; };
+		644B9DA5292F53520091677E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 644B9DA4292F53520091677E /* FirebaseAuth */; };
+		644B9DA7292F53520091677E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 644B9DA6292F53520091677E /* FirebaseFirestore */; };
 		64D5108D28FD1200003B2E30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5108C28FD1200003B2E30 /* AppDelegate.swift */; };
 		64D5108F28FD1200003B2E30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5108E28FD1200003B2E30 /* SceneDelegate.swift */; };
 		64D5109128FD1200003B2E30 /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5109028FD1200003B2E30 /* ItemListViewController.swift */; };
@@ -41,6 +45,7 @@
 		644B9D96292D93B50091677E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		644B9D98292D9BA40091677E /* AddItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemTableViewController.swift; sourceTree = "<group>"; };
 		644B9D9A292D9E500091677E /* AddItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemDetailViewController.swift; sourceTree = "<group>"; };
+		644B9D9C292F4B970091677E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		64D5108928FD1200003B2E30 /* FoodExp Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FoodExp Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D5108C28FD1200003B2E30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64D5108E28FD1200003B2E30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +69,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				644B9DA3292F53520091677E /* FirebaseAnalytics in Frameworks */,
+				644B9DA7292F53520091677E /* FirebaseFirestore in Frameworks */,
+				644B9DA5292F53520091677E /* FirebaseAuth in Frameworks */,
 				9DBF2E1AAEF9875A310BE363 /* Pods_FoodExp_Manager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,6 +127,7 @@
 				64D5109528FD1201003B2E30 /* Assets.xcassets */,
 				64D5109728FD1201003B2E30 /* LaunchScreen.storyboard */,
 				64D5109A28FD1201003B2E30 /* Info.plist */,
+				644B9D9C292F4B970091677E /* GoogleService-Info.plist */,
 			);
 			path = "FoodExp Manager";
 			sourceTree = "<group>";
@@ -195,6 +204,11 @@
 			dependencies = (
 			);
 			name = "FoodExp Manager";
+			packageProductDependencies = (
+				644B9DA2292F53520091677E /* FirebaseAnalytics */,
+				644B9DA4292F53520091677E /* FirebaseAuth */,
+				644B9DA6292F53520091677E /* FirebaseFirestore */,
+			);
 			productName = "FoodExp Manager";
 			productReference = 64D5108928FD1200003B2E30 /* FoodExp Manager.app */;
 			productType = "com.apple.product-type.application";
@@ -245,6 +259,9 @@
 				Base,
 			);
 			mainGroup = 64D5108028FD1200003B2E30;
+			packageReferences = (
+				644B9DA1292F53520091677E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 64D5108A28FD1200003B2E30 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -261,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64D5109928FD1201003B2E30 /* LaunchScreen.storyboard in Resources */,
+				644B9D9D292F4B980091677E /* GoogleService-Info.plist in Resources */,
 				64D5109628FD1201003B2E30 /* Assets.xcassets in Resources */,
 				644B9D97292D93B50091677E /* Main.storyboard in Resources */,
 			);
@@ -613,6 +631,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		644B9DA1292F53520091677E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		644B9DA2292F53520091677E /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 644B9DA1292F53520091677E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		644B9DA4292F53520091677E /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 644B9DA1292F53520091677E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		644B9DA6292F53520091677E /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 644B9DA1292F53520091677E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		64D510C628FD13B2003B2E30 /* DataModel.xcdatamodeld */ = {

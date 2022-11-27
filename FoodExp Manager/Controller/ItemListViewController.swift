@@ -54,6 +54,11 @@ class ItemListViewController: SwipeTableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! AddItemTableViewController
+        
+        destinationVC.passingCategoryValue = selectedCategory
+    }
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
