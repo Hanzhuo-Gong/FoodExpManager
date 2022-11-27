@@ -30,6 +30,7 @@ class ItemListViewController: SwipeTableViewController {
         
         tableView.rowHeight = 80.0
         //loadItems()
+        //print("Item dataPath: \(dataFilePath)")
     }
 
     //MARK - TableView Datasource Methods
@@ -54,18 +55,37 @@ class ItemListViewController: SwipeTableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddItem" {
+            let destinationVC = segue.destination as! AddItemTableViewController
+            
+            //print("Food Array: \(foodArray)")
+            destinationVC.passingCategoryValue = selectedCategory
+            destinationVC.passingFoodArrayValue = foodArray
+        }
+        
+        if segue.identifier == "ItemDetail" {
+            let destinationVC = segue.destination as! ItemDetailViewController
+        }
+    }
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
         //TODO - Create a New UI for the food page, and place the function in there
         performSegue(withIdentifier: "AddItem", sender: self)
+        
         /*
         var textField = UITextField()
         let alert = UIAlertController(title: "Add New Food", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             
+            let uuid = UUID().uuidString
             let newFood = Food(context: self.context)
+            newFood.expirationDate = "November 24 2022"
+            newFood.id = uuid
+            newFood.lifetime = "10"
             newFood.name = textField.text
+            newFood.quantity = "5"
             newFood.parentCategory = self.selectedCategory
             self.foodArray.append(newFood)
             self.saveItems()
@@ -83,7 +103,7 @@ class ItemListViewController: SwipeTableViewController {
         alert.addAction(action)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
-         */
+        */
     }
     
     

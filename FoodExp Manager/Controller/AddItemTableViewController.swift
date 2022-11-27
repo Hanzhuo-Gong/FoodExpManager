@@ -9,9 +9,12 @@ import UIKit
 
 class AddItemTableViewController: UITableViewController {
 
+    var passingCategoryValue : Category?
+    var passingFoodArrayValue : [Food]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //print("Food array: \(passingFoodArrayValue ?? [])")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -88,8 +91,15 @@ class AddItemTableViewController: UITableViewController {
 
     @IBAction func customButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "AddItemDetail", sender: self)
+        
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! AddItemDetailViewController
+        
+        destinationVC.selectedCategoryInDetailPage = passingCategoryValue
+        destinationVC.categoryFoodArray = passingFoodArrayValue
+    }
 }
 
 //MARK: - Search bar methods

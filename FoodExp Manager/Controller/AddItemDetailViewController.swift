@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 class AddItemDetailViewController: UIViewController {
 
@@ -17,20 +19,26 @@ class AddItemDetailViewController: UIViewController {
     @IBOutlet weak var freshLifetimeTextField: UITextField!
     
     let datePicker = UIDatePicker()
+    let db = Firestore.firestore()
+    var selectedCategoryInDetailPage : Category?
+    var categoryFoodArray : [Food]?
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElements()
         createDatepicker()
-        
-        
+        print("page food array: \(categoryFoodArray ?? [])")
     }
     
     func setUpElements() {
+        let categoryName = selectedCategoryInDetailPage?.name
         //errorLabel.alpha = 0
         nameTextField.text = "Banana"
         quantityTextField.text = "6"
-        categoryTextField.text = "Fruite"
+        categoryTextField.text = categoryName
     }
     
     func createToolbar() -> UIToolbar {
@@ -75,16 +83,63 @@ class AddItemDetailViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func substractBtnPressed(_ sender: Any) {
+        var temp = Int(quantityTextField.text ?? "0")
+        if(temp! > 0) {
+           temp! -= 1
+        }
+        quantityTextField.text = String(temp!)
     }
-    */
-
+    
+    @IBAction func addBtnPressed(_ sender: Any) {
+        var temp = Int(quantityTextField.text ?? "0")
+        temp! += 1
+        quantityTextField.text = String(temp!)
+    }
+    
+    @IBAction func submitBtnPressed(_ sender: UIButton) {
+        //if let
+        let uuid = UUID().uuidString
+        if let name = nameTextField.text,
+           let quantity = quantityTextField.text,
+           let lifetime = freshLifetimeTextField.text,
+           let expirationDate = expirationDateTextField.text {
+            
+//            print("uuid: \(uuid)")
+//            print("name: \(name)")
+//            print("quantity: \(quantity)")
+//            print("lifetime: \(lifetime)")
+//            print("expiration Date: \(expirationDate)")
+             
+            
+            let newFood = Food(context: self.context)
+            newFood.id = uuid
+            newFood.name = name
+            newFood.quantity = quantity
+            newFood.lifetime = lifetime
+            newFood.expirationDate = expirationDate
+            newFood.parentCategory = self.selectedCategoryInDetailPage
+            
+            self.saveItems()
+        }
+        performSegue(withIdentifier: "ItemAddedFromCustom", sender: self)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! ItemListViewController
+        
+        destinationVC.selectedCategory = selectedCategoryInDetailPage
+    
+    }
+    
+    func saveItems() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+    }
 }
 
 //MARK: date extension

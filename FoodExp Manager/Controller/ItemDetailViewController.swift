@@ -9,6 +9,10 @@ import UIKit
 
 class ItemDetailViewController: UIViewController {
 
+    @IBOutlet weak var expirationDateLabel: UILabel!
+    @IBOutlet weak var quantityTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var lifeTimeTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
