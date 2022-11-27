@@ -9,6 +9,7 @@ import UIKit
 
 class ItemDetailViewController: UIViewController {
 
+    @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var expirationDateLabel: UILabel!
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!

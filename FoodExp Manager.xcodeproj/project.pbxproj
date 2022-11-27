@@ -15,6 +15,7 @@
 		644B9DA3292F53520091677E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 644B9DA2292F53520091677E /* FirebaseAnalytics */; };
 		644B9DA5292F53520091677E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 644B9DA4292F53520091677E /* FirebaseAuth */; };
 		644B9DA7292F53520091677E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 644B9DA6292F53520091677E /* FirebaseFirestore */; };
+		644B9DA9293409800091677E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 644B9DA8293409800091677E /* FirebaseFirestore */; };
 		64D5108D28FD1200003B2E30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5108C28FD1200003B2E30 /* AppDelegate.swift */; };
 		64D5108F28FD1200003B2E30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5108E28FD1200003B2E30 /* SceneDelegate.swift */; };
 		64D5109128FD1200003B2E30 /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5109028FD1200003B2E30 /* ItemListViewController.swift */; };
@@ -80,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				644B9DA9293409800091677E /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +229,9 @@
 				64D8A0FD2910C4A5009B72B1 /* PBXTargetDependency */,
 			);
 			name = "FoodExp ManagerTests";
+			packageProductDependencies = (
+				644B9DA8293409800091677E /* FirebaseFirestore */,
+			);
 			productName = "FoodExp ManagerTests";
 			productReference = 64D8A0F82910C4A5009B72B1 /* FoodExp ManagerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -655,6 +660,11 @@
 			productName = FirebaseAuth;
 		};
 		644B9DA6292F53520091677E /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 644B9DA1292F53520091677E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		644B9DA8293409800091677E /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 644B9DA1292F53520091677E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
