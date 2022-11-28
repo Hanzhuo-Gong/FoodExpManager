@@ -14,13 +14,82 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var lifeTimeTextField: UITextField!
+    @IBOutlet weak var expirationDateTextField: UITextField!
+    
+    var selectedFood : Food?
+    var selectedFoodCategory : Category?
+    let datePicker = UIDatePicker()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setUpElements()
+        createDatepicker()
     }
     
+    func setUpElements() {
+        categoryTextField.text = selectedFoodCategory?.name
+        expirationDateTextField.text = selectedFood?.expirationDate
+        quantityTextField.text = selectedFood?.quantity
+        nameTextField.text = selectedFood?.name
+        lifeTimeTextField.text = selectedFood?.lifetime
+        expirationDateLabel.alpha = 0
+        
+        //Calculate how much time left before expiration
+        let dateFormmater = DateFormatter()
+        dateFormmater.dateStyle = .long
+        
+        if let expirationDate = dateFormmater.date(from: selectedFood?.expirationDate ?? "") {
+            let currentDate = Date()
+            
+            // Difference in day
+            let diffInDays = Calendar.current.dateComponents([.day], from: currentDate, to: expirationDate).day! + 1
+            
+            expirationDateLabel.text = checkExpiration(diffInDays)
+            expirationDateLabel.alpha = 1
+        }
+        
+    }
+    
+    func createToolbar() -> UIToolbar {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        // done button
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([doneBtn], animated: true)
+        
+        return toolbar
+    }
 
+    func createDatepicker() {
+        //Style of the datePicker
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
+        
+        expirationDateTextField.inputView = datePicker
+        expirationDateTextField.inputAccessoryView = createToolbar()
+    }
+    
+    @objc func donePressed() {
+        // formatter
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        
+        expirationDateTextField.text = formatter.string(from: datePicker.date)
+        
+        let currentDate = Date()
+        
+        // Difference in day
+        let diffInDays = Calendar.current.dateComponents([.day], from: currentDate, to: datePicker.date).day! + 1
+        lifeTimeTextField.text = String(diffInDays)
+        expirationDateLabel.text = checkExpiration(diffInDays)
+        
+        self.view.endEditing(true)
+    }
     /*
     // MARK: - Navigation
 
@@ -30,5 +99,33 @@ class ItemDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    func checkExpiration(_ value: Int) -> String {
+        var tempString = ""
+        
+        if value > 1 {
+            tempString = "\(String(value)) days left before expiration"
+        }
+        else if value < 0 {
+            tempString = "Food already expired"
+        }
+        else if value == 0 {
+            tempString = "Food will expire today"
+        }
+        else {
+            tempString = "\(String(value)) day left before expiration"
+        }
+        
+        return tempString
+    }
+    
+    @IBAction func updateBtnPressed(_ sender: UIButton) {
+        print("update button pressed")
+    }
+    
+    @IBAction func shareBtnPressed(_ sender: UIButton) {
+        print("share button pressed")
+    }
+    @IBAction func FavoriteBtnPressed(_ sender: UIButton) {
+        print("favorite button pressed")
+    }
 }

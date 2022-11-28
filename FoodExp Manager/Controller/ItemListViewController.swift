@@ -19,6 +19,7 @@ class ItemListViewController: SwipeTableViewController {
         didSet {
             loadItems()
         }
+                                      
     }
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -66,12 +67,16 @@ class ItemListViewController: SwipeTableViewController {
         
         if segue.identifier == "ItemDetail" {
             let destinationVC = segue.destination as! ItemDetailViewController
+            
+            if let indexPath = tableView.indexPathForSelectedRow {
+                destinationVC.selectedFoodCategory = selectedCategory
+                destinationVC.selectedFood = foodArray[indexPath.row]
+            }
         }
     }
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
-        //TODO - Create a New UI for the food page, and place the function in there
         performSegue(withIdentifier: "AddItem", sender: self)
         
         /*
