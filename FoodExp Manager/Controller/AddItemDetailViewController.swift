@@ -30,7 +30,7 @@ class AddItemDetailViewController: UIViewController {
         super.viewDidLoad()
         setUpElements()
         createDatepicker()
-        print("page food array: \(categoryFoodArray ?? [])")
+        //print("page food array: \(categoryFoodArray ?? [])")
     }
     
     func setUpElements() {
