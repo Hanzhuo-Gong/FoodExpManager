@@ -6,12 +6,18 @@
 //
 
 import UIKit
+import CoreData
 
 class OverviewTableViewController: UITableViewController {
 
+    
+    //let request : NSFetchRequest<Food> = Food.fetchRequest()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let data : NSFetchRequest<Food> = Food.fetchRequest()
+        print("Data fetch: \(data)")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

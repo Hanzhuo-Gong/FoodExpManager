@@ -16,6 +16,7 @@ class AddItemTableViewController: UITableViewController {
     var passingFoodArrayValue : [Food]?
     let db = Firestore.firestore()
     var itemArray = [Item]()
+    var filteredData = [Item]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,8 @@ class AddItemTableViewController: UITableViewController {
     }
     
     func loadItems() {
+        itemArray = []
+        
         db.collection("items").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -71,6 +74,26 @@ class AddItemTableViewController: UITableViewController {
                 }
                 self.tableView.reloadData()
             }
+        }
+    }
+    
+    func loadItems(_ filterString: String) {
+        itemArray = []
+        
+        db.collection("items").whereField("name", isEqualTo: filterString)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        if let name = document.data()["name"] as? String,
+                           let lifetime = document.data()["lifetime"] as? String {
+                            let newItem = Item(name: name, lifetime: lifetime)
+                            self.itemArray.append(newItem)
+                        }
+                    }
+                    self.tableView.reloadData()
+                }
         }
     }
     
@@ -97,8 +120,31 @@ class AddItemTableViewController: UITableViewController {
 
 //MARK: - Search bar methods
 extension AddItemTableViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        //should retrieve the data from firebase with the includes method
+        
+        if searchBar.text?.count != 0 {
+            loadItems(searchBar.text!)
+        }
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadItems()
+            
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
+    
+    /*
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("search button clicked")
     }
+     */
 }
 
