@@ -33,8 +33,6 @@ class AddItemDetailViewController: UIViewController {
         setUpElements()
         createDatepicker()
         //print("page food array: \(categoryFoodArray ?? [])")
-        print("prefill name: \(prefillName)")
-        print("prefill lifetime: \(prefillLifetime)")
     }
     
     func setUpElements() {
@@ -42,6 +40,19 @@ class AddItemDetailViewController: UIViewController {
         errorLabel.alpha = 0
         quantityTextField.text = "1"
         categoryTextField.text = categoryName
+        
+        if let prefillName, let prefillLifetime {
+            nameTextField.text = prefillName
+            freshLifetimeTextField.text = prefillLifetime
+            
+            let today = Date()
+            let expirationDate = Calendar.current.date(byAdding: .day, value: Int(prefillLifetime)!, to: today)
+            
+            let formatter = DateFormatter()
+            formatter.dateStyle = .long
+            formatter.timeStyle = .none
+            expirationDateTextField.text = formatter.string(from: expirationDate!)
+        }
     }
     
     func createToolbar() -> UIToolbar {

@@ -17,6 +17,8 @@
 		644B9DA7292F53520091677E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 644B9DA6292F53520091677E /* FirebaseFirestore */; };
 		644B9DA9293409800091677E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 644B9DA8293409800091677E /* FirebaseFirestore */; };
 		644B9DAD293480650091677E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9DAC293480650091677E /* Item.swift */; };
+		644B9DB32934961E0091677E /* OverviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9DB22934961E0091677E /* OverviewTableViewController.swift */; };
+		644B9DB5293496370091677E /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9DB4293496370091677E /* FavoriteTableViewController.swift */; };
 		64D5108D28FD1200003B2E30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5108C28FD1200003B2E30 /* AppDelegate.swift */; };
 		64D5108F28FD1200003B2E30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5108E28FD1200003B2E30 /* SceneDelegate.swift */; };
 		64D5109128FD1200003B2E30 /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5109028FD1200003B2E30 /* ItemListViewController.swift */; };
@@ -49,6 +51,8 @@
 		644B9D9A292D9E500091677E /* AddItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemDetailViewController.swift; sourceTree = "<group>"; };
 		644B9D9C292F4B970091677E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		644B9DAC293480650091677E /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		644B9DB22934961E0091677E /* OverviewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTableViewController.swift; sourceTree = "<group>"; };
+		644B9DB4293496370091677E /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		64D5108928FD1200003B2E30 /* FoodExp Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FoodExp Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D5108C28FD1200003B2E30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64D5108E28FD1200003B2E30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 				644B9D91292D52C10091677E /* ItemDetailViewController.swift */,
 				644B9D98292D9BA40091677E /* AddItemTableViewController.swift */,
 				644B9D9A292D9E500091677E /* AddItemDetailViewController.swift */,
+				644B9DB22934961E0091677E /* OverviewTableViewController.swift */,
+				644B9DB4293496370091677E /* FavoriteTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -348,12 +354,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				644B9DB5293496370091677E /* FavoriteTableViewController.swift in Sources */,
 				64D510CA29079643003B2E30 /* CategoryViewController.swift in Sources */,
 				64D5109128FD1200003B2E30 /* ItemListViewController.swift in Sources */,
 				644B9D92292D52C10091677E /* ItemDetailViewController.swift in Sources */,
 				64D510C828FD13B2003B2E30 /* DataModel.xcdatamodeld in Sources */,
 				64D5108D28FD1200003B2E30 /* AppDelegate.swift in Sources */,
 				64D8A1052910CD67009B72B1 /* CategoryValidationService.swift in Sources */,
+				644B9DB32934961E0091677E /* OverviewTableViewController.swift in Sources */,
 				644B9DAD293480650091677E /* Item.swift in Sources */,
 				64D510CC290A4E07003B2E30 /* SwipeTableViewController.swift in Sources */,
 				64D5108F28FD1200003B2E30 /* SceneDelegate.swift in Sources */,

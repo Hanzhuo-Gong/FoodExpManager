@@ -8,6 +8,10 @@
 import UIKit
 import FirebaseFirestore
 
+//TODO: write the update button for edit
+
+
+
 class ItemDetailViewController: UIViewController {
 
     @IBOutlet weak var categoryTextField: UITextField!
@@ -151,6 +155,13 @@ class ItemDetailViewController: UIViewController {
                     }
                 }
             }
+            let thankMessage = "Thank you for sharing your information!"
+            let alert = UIAlertController(title: "Done!", message: thankMessage, preferredStyle: .alert)
+            let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (action) in
+                //Cancel action, no code is required in here
+            }
+            alert.addAction(confirmAction)
+            self.present(alert, animated: true, completion: nil)
         }
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
