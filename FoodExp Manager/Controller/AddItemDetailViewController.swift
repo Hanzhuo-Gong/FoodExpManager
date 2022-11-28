@@ -7,7 +7,7 @@
 
 import UIKit
 import Firebase
-import FirebaseFirestore
+
 
 class AddItemDetailViewController: UIViewController {
 
@@ -19,9 +19,11 @@ class AddItemDetailViewController: UIViewController {
     @IBOutlet weak var freshLifetimeTextField: UITextField!
     
     let datePicker = UIDatePicker()
-    let db = Firestore.firestore()
+    
     var selectedCategoryInDetailPage : Category?
     var categoryFoodArray : [Food]?
+    var prefillName: String?
+    var prefillLifetime: String?
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -35,10 +37,22 @@ class AddItemDetailViewController: UIViewController {
     
     func setUpElements() {
         let categoryName = selectedCategoryInDetailPage?.name
-        //errorLabel.alpha = 0
-        nameTextField.text = "Banana"
-        quantityTextField.text = "6"
+        errorLabel.alpha = 0
+        quantityTextField.text = "1"
         categoryTextField.text = categoryName
+        
+        if let prefillName, let prefillLifetime {
+            nameTextField.text = prefillName
+            freshLifetimeTextField.text = prefillLifetime
+            
+            let today = Date()
+            let expirationDate = Calendar.current.date(byAdding: .day, value: Int(prefillLifetime)!, to: today)
+            
+            let formatter = DateFormatter()
+            formatter.dateStyle = .long
+            formatter.timeStyle = .none
+            expirationDateTextField.text = formatter.string(from: expirationDate!)
+        }
     }
     
     func createToolbar() -> UIToolbar {
@@ -104,14 +118,7 @@ class AddItemDetailViewController: UIViewController {
            let quantity = quantityTextField.text,
            let lifetime = freshLifetimeTextField.text,
            let expirationDate = expirationDateTextField.text {
-            
-//            print("uuid: \(uuid)")
-//            print("name: \(name)")
-//            print("quantity: \(quantity)")
-//            print("lifetime: \(lifetime)")
-//            print("expiration Date: \(expirationDate)")
              
-            
             let newFood = Food(context: self.context)
             newFood.id = uuid
             newFood.name = name

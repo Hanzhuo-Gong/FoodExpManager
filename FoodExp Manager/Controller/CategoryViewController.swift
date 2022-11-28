@@ -8,8 +8,6 @@
 import UIKit
 import CoreData
 
-
-
 class CategoryViewController: SwipeTableViewController {
 
     var categoryArray = [Category]()
@@ -143,8 +141,8 @@ class CategoryViewController: SwipeTableViewController {
             //Cancel action, no code is required in here
         }
         
-        alert.addAction(action)
         alert.addAction(cancelAction)
+        alert.addAction(action)
         alert.addTextField { (field) in
             textField = field
             textField.placeholder = "Add new category"

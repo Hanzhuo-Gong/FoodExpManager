@@ -12,7 +12,6 @@ import SwipeCellKit
 class ItemListViewController: SwipeTableViewController {
     
     var foodArray = [Food]()
-    //TODO: Check if I have to delete the didSet, because need  to send this variable to add Item
     var selectedCategory : Category? {
         //when a selectedCategory is selected, load the corresponding items in that category
         
@@ -79,36 +78,6 @@ class ItemListViewController: SwipeTableViewController {
         
         performSegue(withIdentifier: "AddItem", sender: self)
         
-        /*
-        var textField = UITextField()
-        let alert = UIAlertController(title: "Add New Food", message: "", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-            
-            let uuid = UUID().uuidString
-            let newFood = Food(context: self.context)
-            newFood.expirationDate = "November 24 2022"
-            newFood.id = uuid
-            newFood.lifetime = "10"
-            newFood.name = textField.text
-            newFood.quantity = "5"
-            newFood.parentCategory = self.selectedCategory
-            self.foodArray.append(newFood)
-            self.saveItems()
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
-            //Cancel action, no code is required in here
-        }
-        
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Create new food"
-            textField = alertTextField
-        }
-        
-        alert.addAction(action)
-        alert.addAction(cancelAction)
-        present(alert, animated: true, completion: nil)
-        */
     }
     
     
@@ -211,3 +180,34 @@ extension ItemListViewController: UISearchBarDelegate {
     }
 }
 
+//inside func addbuttonPressed to add dummy data for testing
+/*
+var textField = UITextField()
+let alert = UIAlertController(title: "Add New Food", message: "", preferredStyle: .alert)
+let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+    
+    let uuid = UUID().uuidString
+    let newFood = Food(context: self.context)
+    newFood.expirationDate = "November 24 2022"
+    newFood.id = uuid
+    newFood.lifetime = "10"
+    newFood.name = textField.text
+    newFood.quantity = "5"
+    newFood.parentCategory = self.selectedCategory
+    self.foodArray.append(newFood)
+    self.saveItems()
+}
+
+let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
+    //Cancel action, no code is required in here
+}
+
+alert.addTextField { (alertTextField) in
+    alertTextField.placeholder = "Create new food"
+    textField = alertTextField
+}
+
+alert.addAction(action)
+alert.addAction(cancelAction)
+present(alert, animated: true, completion: nil)
+*/
