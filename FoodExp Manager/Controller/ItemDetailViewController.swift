@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ItemDetailViewController: UIViewController {
 
@@ -19,6 +20,7 @@ class ItemDetailViewController: UIViewController {
     var selectedFood : Food?
     var selectedFoodCategory : Category?
     let datePicker = UIDatePicker()
+    let db = Firestore.firestore()
     
     
     override func viewDidLoad() {
@@ -123,7 +125,42 @@ class ItemDetailViewController: UIViewController {
     }
     
     @IBAction func shareBtnPressed(_ sender: UIButton) {
-        print("share button pressed")
+        let alertMessage = "Share your prefilled data. Others can find your item in the search"
+        
+        let alert = UIAlertController(title: "Share the Item", message: alertMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Share", style: .default) { (action) in
+            
+            //TODO: need to check whether the data exist or not, if exist, update the value instead of create a new one
+            if let itemCategory = self.selectedFoodCategory?.name,
+               let itemName = self.selectedFood?.name,
+               let itemLifeTime = self.selectedFood?.lifetime,
+               let itemID = self.selectedFood?.id {
+                
+                // Add a new document with a generated ID
+                var ref: DocumentReference? = nil
+                ref = self.db.collection("items").addDocument(data: [
+                    "id": itemID,
+                    "category": itemCategory,
+                    "name": itemName,
+                    "lifetime": itemLifeTime
+                ]) { err in
+                    if let err = err {
+                        print("Error adding document: \(err)")
+                    } else {
+                        print("Document added with ID: \(ref!.documentID)")
+                    }
+                }
+            }
+        }
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            //Cancel action, no code is required in here
+        }
+
+        alert.addAction(cancelAction)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+         
     }
     @IBAction func FavoriteBtnPressed(_ sender: UIButton) {
         print("favorite button pressed")

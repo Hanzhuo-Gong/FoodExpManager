@@ -6,96 +6,92 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class AddItemTableViewController: UITableViewController {
 
+    @IBOutlet var itemList: UITableView!
+    
     var passingCategoryValue : Category?
     var passingFoodArrayValue : [Food]?
-    
+    let db = Firestore.firestore()
+    var itemArray = [Item]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadItems()
         //print("Food array: \(passingFoodArrayValue ?? [])")
+        tableView.rowHeight = 80.0
         
     }
 
     // MARK: - Table view data source
-
+    /*
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
-    }
-
+    }*/
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        return itemArray.count
     }
-
-    /*
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Items", for: indexPath)
 
         // Configure the cell...
-
+        let lifetimeString = "        ⏳ \(itemArray[indexPath.row].lifetime)"
+        let combineString = itemArray[indexPath.row].name + lifetimeString
+        cell.textLabel?.text = combineString
         return cell
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //TODO: Need to perform segue to the Item Detail Page
+        performSegue(withIdentifier: "AddItemPreFill", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+        //print("add item segue triggered")
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func loadItems() {
+        db.collection("items").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    if let name = document.data()["name"] as? String,
+                       let lifetime = document.data()["lifetime"] as? String {
+                        let newItem = Item(name: name, lifetime: lifetime)
+                        self.itemArray.append(newItem)
+                    }
+                }
+                self.tableView.reloadData()
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
     @IBAction func customButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "AddItemDetail", sender: self)
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! AddItemDetailViewController
         
+        
+        let destinationVC = segue.destination as! AddItemDetailViewController
         destinationVC.selectedCategoryInDetailPage = passingCategoryValue
         destinationVC.categoryFoodArray = passingFoodArrayValue
+        
+        if segue.identifier == "AddItemPreFill" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                destinationVC.prefillName = itemArray[indexPath.row].name
+                destinationVC.prefillLifetime = itemArray[indexPath.row].lifetime
+            }
+        }
     }
 }
 
@@ -105,3 +101,4 @@ extension AddItemTableViewController: UISearchBarDelegate {
         print("search button clicked")
     }
 }
+

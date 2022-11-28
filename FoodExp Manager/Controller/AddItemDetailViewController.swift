@@ -7,7 +7,7 @@
 
 import UIKit
 import Firebase
-import FirebaseFirestore
+
 
 class AddItemDetailViewController: UIViewController {
 
@@ -19,9 +19,11 @@ class AddItemDetailViewController: UIViewController {
     @IBOutlet weak var freshLifetimeTextField: UITextField!
     
     let datePicker = UIDatePicker()
-    let db = Firestore.firestore()
+    
     var selectedCategoryInDetailPage : Category?
     var categoryFoodArray : [Food]?
+    var prefillName: String?
+    var prefillLifetime: String?
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -31,13 +33,14 @@ class AddItemDetailViewController: UIViewController {
         setUpElements()
         createDatepicker()
         //print("page food array: \(categoryFoodArray ?? [])")
+        print("prefill name: \(prefillName)")
+        print("prefill lifetime: \(prefillLifetime)")
     }
     
     func setUpElements() {
         let categoryName = selectedCategoryInDetailPage?.name
-        //errorLabel.alpha = 0
-        nameTextField.text = "Banana"
-        quantityTextField.text = "6"
+        errorLabel.alpha = 0
+        quantityTextField.text = "1"
         categoryTextField.text = categoryName
     }
     
@@ -104,14 +107,7 @@ class AddItemDetailViewController: UIViewController {
            let quantity = quantityTextField.text,
            let lifetime = freshLifetimeTextField.text,
            let expirationDate = expirationDateTextField.text {
-            
-//            print("uuid: \(uuid)")
-//            print("name: \(name)")
-//            print("quantity: \(quantity)")
-//            print("lifetime: \(lifetime)")
-//            print("expiration Date: \(expirationDate)")
              
-            
             let newFood = Food(context: self.context)
             newFood.id = uuid
             newFood.name = name
