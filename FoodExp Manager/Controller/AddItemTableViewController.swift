@@ -44,9 +44,8 @@ class AddItemTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Items", for: indexPath)
 
         // Configure the cell...
-        let lifetimeString = "        ⏳ \(itemArray[indexPath.row].lifetime)"
-        let combineString = itemArray[indexPath.row].name + lifetimeString
-        cell.textLabel?.text = combineString
+        cell.textLabel?.text = itemArray[indexPath.row].name
+        cell.detailTextLabel?.text = "⏳ \(itemArray[indexPath.row].lifetime)"
         return cell
     }
 
