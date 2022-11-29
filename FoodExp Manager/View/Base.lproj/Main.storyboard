@@ -150,7 +150,7 @@
             </objects>
             <point key="canvasLocation" x="2416.9230769230767" y="-796.20853080568713"/>
         </scene>
-        <!--Food-->
+        <!--Item-->
         <scene sceneID="Tnj-Of-lQ5">
             <objects>
                 <tableViewController id="3O3-bl-VGG" customClass="ItemListViewController" customModule="FoodExp_Manager" customModuleProvider="target" sceneMemberID="viewController">
@@ -181,7 +181,7 @@
                             <outlet property="delegate" destination="3O3-bl-VGG" id="wd0-OM-WtD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Food" id="WCi-7U-lRj">
+                    <navigationItem key="navigationItem" title="Item" id="WCi-7U-lRj">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="fRs-JQ-ERp">
                             <connections>
                                 <action selector="addButtonPressed:" destination="3O3-bl-VGG" id="0Xh-7V-SKL"/>
