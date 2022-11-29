@@ -9,18 +9,29 @@ import UIKit
 import CoreData
 import FirebaseCore
 import FirebaseFirestore
+import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    
+    // Ask user permission for local notification
+    private func requestNotificationAuthorization(application: UIApplication) {
+        let center = UNUserNotificationCenter.current()
+        let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+        
+        center.requestAuthorization(options: options) {granted, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
         let db = Firestore.firestore()
         //print(db)
-        
+        requestNotificationAuthorization(application: application)
         return true
     }
 
@@ -38,7 +49,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
+    
     func applicationWillTerminate(_ application: UIApplication) {
+        print("application will terminate")
         self.saveContext()
     }
 
