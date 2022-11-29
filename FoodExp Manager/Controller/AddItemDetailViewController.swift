@@ -129,10 +129,31 @@ class AddItemDetailViewController: UIViewController {
             newFood.parentCategory = self.selectedCategoryInDetailPage
             
             self.saveItems()
+            
+            if Int(lifetime) ?? 0 <= 0 {
+                print("Food will expired today, no reminder needed")
+            }
+            else {
+                var reminderTimeInterval = 1
+                let secondsInADay = 86400
+                let lifeTimeInterval = Int(lifetime)! * secondsInADay
+                let bodyMessage = "\(nameTextField.text ?? "Food") will expire soon. If the item still there, Please check on Overview to view the expiration date"
+                // if the lifetime greater than 3, remind when 3 days left, else remind when 1 day left
+                let reminderday = Int(lifetime) ?? 1 > 3 ? 3 : 1
+                let reminderdayTimeInterval = reminderday * secondsInADay
+                reminderTimeInterval = lifeTimeInterval - reminderdayTimeInterval
+                
+                if(reminderTimeInterval <= 0) {
+                    reminderTimeInterval = 1
+                }
+                
+                notificationPublisher.sendNotification(title: "Reminder", body: bodyMessage , badge: 1, delayInterval: reminderTimeInterval)
+                
+            }
+            
         }
         performSegue(withIdentifier: "ItemAddedFromCustom", sender: self)
-        let bodyMessage = "\(nameTextField.text ?? "Food") will expire soon"
-        notificationPublisher.sendNotification(title: "Reminder", body: bodyMessage , badge: 1, delayInterval: nil)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

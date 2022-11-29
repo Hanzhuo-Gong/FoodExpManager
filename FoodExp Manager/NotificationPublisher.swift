@@ -15,6 +15,7 @@ class NotificationPublisher: NSObject {
                           badge: Int?,
                           delayInterval: Int?) {
         
+        
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = title
         notificationContent.body = body
@@ -40,7 +41,7 @@ class NotificationPublisher: NSObject {
         //let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
         
         //replace the identifier with the uuidString later
-        let request = UNNotificationRequest(identifier: "TestLocalNotification", content: notificationContent, trigger: delayTimeTrigger)
+        let request = UNNotificationRequest(identifier: uuidString, content: notificationContent, trigger: delayTimeTrigger)
         
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {
