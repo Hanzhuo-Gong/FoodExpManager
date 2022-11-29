@@ -19,6 +19,7 @@
 		644B9DAD293480650091677E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9DAC293480650091677E /* Item.swift */; };
 		644B9DB32934961E0091677E /* OverviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9DB22934961E0091677E /* OverviewTableViewController.swift */; };
 		644B9DB5293496370091677E /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9DB4293496370091677E /* FavoriteTableViewController.swift */; };
+		644B9DBB2935C0E70091677E /* NotificationPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9DBA2935C0E70091677E /* NotificationPublisher.swift */; };
 		64D5108D28FD1200003B2E30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5108C28FD1200003B2E30 /* AppDelegate.swift */; };
 		64D5108F28FD1200003B2E30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5108E28FD1200003B2E30 /* SceneDelegate.swift */; };
 		64D5109128FD1200003B2E30 /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5109028FD1200003B2E30 /* ItemListViewController.swift */; };
@@ -53,6 +54,7 @@
 		644B9DAC293480650091677E /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		644B9DB22934961E0091677E /* OverviewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTableViewController.swift; sourceTree = "<group>"; };
 		644B9DB4293496370091677E /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
+		644B9DBA2935C0E70091677E /* NotificationPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPublisher.swift; sourceTree = "<group>"; };
 		64D5108928FD1200003B2E30 /* FoodExp Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FoodExp Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D5108C28FD1200003B2E30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64D5108E28FD1200003B2E30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				64D510A128FD1222003B2E30 /* Controller */,
 				64D510A028FD1210003B2E30 /* Model */,
 				64D5108C28FD1200003B2E30 /* AppDelegate.swift */,
+				644B9DBA2935C0E70091677E /* NotificationPublisher.swift */,
 				64D5108E28FD1200003B2E30 /* SceneDelegate.swift */,
 				64D5109528FD1201003B2E30 /* Assets.xcassets */,
 				64D5109728FD1201003B2E30 /* LaunchScreen.storyboard */,
@@ -361,6 +364,7 @@
 				64D510C828FD13B2003B2E30 /* DataModel.xcdatamodeld in Sources */,
 				64D5108D28FD1200003B2E30 /* AppDelegate.swift in Sources */,
 				64D8A1052910CD67009B72B1 /* CategoryValidationService.swift in Sources */,
+				644B9DBB2935C0E70091677E /* NotificationPublisher.swift in Sources */,
 				644B9DB32934961E0091677E /* OverviewTableViewController.swift in Sources */,
 				644B9DAD293480650091677E /* Item.swift in Sources */,
 				64D510CC290A4E07003B2E30 /* SwipeTableViewController.swift in Sources */,

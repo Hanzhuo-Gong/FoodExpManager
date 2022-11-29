@@ -18,6 +18,7 @@ class AddItemDetailViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var freshLifetimeTextField: UITextField!
     
+    private let notificationPublisher = NotificationPublisher()
     let datePicker = UIDatePicker()
     
     var selectedCategoryInDetailPage : Category?
@@ -130,7 +131,8 @@ class AddItemDetailViewController: UIViewController {
             self.saveItems()
         }
         performSegue(withIdentifier: "ItemAddedFromCustom", sender: self)
-        
+        let bodyMessage = "\(nameTextField.text ?? "Food") will expire soon"
+        notificationPublisher.sendNotification(title: "Reminder", body: bodyMessage , badge: 1, delayInterval: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
