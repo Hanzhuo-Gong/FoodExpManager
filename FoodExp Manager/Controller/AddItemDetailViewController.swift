@@ -16,7 +16,9 @@ class AddItemDetailViewController: UIViewController {
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var nameErrorLabel: UILabel!
     @IBOutlet weak var freshLifetimeTextField: UITextField!
+    @IBOutlet weak var expErrorLabel: UILabel!
     
     private let notificationPublisher = NotificationPublisher()
     let datePicker = UIDatePicker()
@@ -45,6 +47,8 @@ class AddItemDetailViewController: UIViewController {
         if let prefillName, let prefillLifetime {
             nameTextField.text = prefillName
             freshLifetimeTextField.text = prefillLifetime
+            nameErrorLabel.isHidden = true
+            expErrorLabel.isHidden = true
             
             let today = Date()
             let expirationDate = Calendar.current.date(byAdding: .day, value: Int(prefillLifetime)!, to: today)
@@ -84,16 +88,26 @@ class AddItemDetailViewController: UIViewController {
         
         expirationDateTextField.text = formatter.string(from: datePicker.date)
         
-        //Testing for expiration date
-        formatter.dateStyle = .short
-        let expirationDateShort = formatter.string(from: datePicker.date)
-        errorLabel.text = expirationDateShort
-        
         let currentDate = Date()
         
         // Difference in day
         let diffInDays = Calendar.current.dateComponents([.day], from: currentDate, to: datePicker.date).day! + 1
         freshLifetimeTextField.text = String(diffInDays)
+        
+        if let expfield = expirationDateTextField.text {
+            if expfield.count > 0 && diffInDays > 0 {
+                expErrorLabel.isHidden = true
+            }
+            else if expfield.count == 0 {
+                expErrorLabel.isHidden = false
+            }
+            
+            if diffInDays <= 0 {
+                expErrorLabel.isHidden = false
+                expErrorLabel.text = "Past date selected, please select a valid date"
+            }
+        }
+        
         
         self.view.endEditing(true)
     }
@@ -169,6 +183,59 @@ class AddItemDetailViewController: UIViewController {
         } catch {
             print("Error saving context \(error)")
         }
+    }
+    
+    
+    
+    @IBAction func nameChanged(_ sender: Any) {
+        if let namefield = nameTextField.text {
+            nameErrorLabel.isHidden = (namefield.count == 0) ? false : true
+        }
+    }
+    
+    /*
+    @IBAction func expChanged(_ sender: Any) {
+        if let expfield = expirationDateTextField.text {
+            if expfield.count == 0 {
+                expErrorLabel.isHidden = false
+                expErrorLabel.text = "Required"
+            }
+            else {
+                expErrorLabel.isHidden = true
+            }
+        }
+        
+        
+        let dateFormmater = DateFormatter()
+
+        dateFormmater.dateStyle = .long
+        dateFormmater.timeStyle = .none
+
+        if let validDate = dateFormmater.date(from: expirationDateTextField.text ?? "") {
+            if validDate != nil {
+                expErrorLabel.isHidden = false
+                expErrorLabel.text = "Invalid expiration date entered. Please use the date picker, or enter a valid date (ex November 22 2022)"
+            }
+            else {
+                expErrorLabel.isHidden = true
+            }
+        }
+        
+    }
+     */
+    
+    func calculateDayDifference(_ sampleDate: String) -> Int {
+        let dateFormmater = DateFormatter()
+        dateFormmater.dateStyle = .long
+        dateFormmater.timeStyle = .none
+        
+        let expirationDate = dateFormmater.date(from: sampleDate) ?? Date()
+        let currentDate = Date()
+        
+        // Difference in day
+        let diffInDays = Calendar.current.dateComponents([.day], from: currentDate, to: expirationDate).day! + 1
+            
+        return diffInDays
     }
 }
 

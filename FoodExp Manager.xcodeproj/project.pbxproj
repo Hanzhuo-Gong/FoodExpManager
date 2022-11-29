@@ -20,6 +20,7 @@
 		644B9DB32934961E0091677E /* OverviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9DB22934961E0091677E /* OverviewTableViewController.swift */; };
 		644B9DB5293496370091677E /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9DB4293496370091677E /* FavoriteTableViewController.swift */; };
 		644B9DBB2935C0E70091677E /* NotificationPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9DBA2935C0E70091677E /* NotificationPublisher.swift */; };
+		648A62D92936AA6900C3DF5D /* AddItemValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648A62D82936AA6900C3DF5D /* AddItemValidationService.swift */; };
 		64D5108D28FD1200003B2E30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5108C28FD1200003B2E30 /* AppDelegate.swift */; };
 		64D5108F28FD1200003B2E30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5108E28FD1200003B2E30 /* SceneDelegate.swift */; };
 		64D5109128FD1200003B2E30 /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5109028FD1200003B2E30 /* ItemListViewController.swift */; };
@@ -55,6 +56,7 @@
 		644B9DB22934961E0091677E /* OverviewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTableViewController.swift; sourceTree = "<group>"; };
 		644B9DB4293496370091677E /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		644B9DBA2935C0E70091677E /* NotificationPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPublisher.swift; sourceTree = "<group>"; };
+		648A62D82936AA6900C3DF5D /* AddItemValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemValidationService.swift; sourceTree = "<group>"; };
 		64D5108928FD1200003B2E30 /* FoodExp Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FoodExp Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D5108C28FD1200003B2E30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64D5108E28FD1200003B2E30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				64D8A1042910CD67009B72B1 /* CategoryValidationService.swift */,
+				648A62D82936AA6900C3DF5D /* AddItemValidationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				644B9DB32934961E0091677E /* OverviewTableViewController.swift in Sources */,
 				644B9DAD293480650091677E /* Item.swift in Sources */,
 				64D510CC290A4E07003B2E30 /* SwipeTableViewController.swift in Sources */,
+				648A62D92936AA6900C3DF5D /* AddItemValidationService.swift in Sources */,
 				64D5108F28FD1200003B2E30 /* SceneDelegate.swift in Sources */,
 				644B9D9B292D9E500091677E /* AddItemDetailViewController.swift in Sources */,
 				644B9D99292D9BA40091677E /* AddItemTableViewController.swift in Sources */,
@@ -463,7 +467,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -517,7 +521,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -547,7 +551,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.hanzhuogong.FoodExp-Manager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -576,7 +580,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.hanzhuogong.FoodExp-Manager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
