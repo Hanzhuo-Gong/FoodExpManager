@@ -24,6 +24,10 @@ class AddItemTableViewController: UITableViewController {
         //print("Food array: \(passingFoodArrayValue ?? [])")
         tableView.rowHeight = 80.0
         
+        // hide on keyboard when tapping outside
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
 
     // MARK: - Table view data source
@@ -122,6 +126,9 @@ extension AddItemTableViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //should retrieve the data from firebase with the includes method
+        
+        // hide keyboard
+        view.endEditing(true)
         
         if searchBar.text?.count != 0 {
             loadItems(searchBar.text!)
