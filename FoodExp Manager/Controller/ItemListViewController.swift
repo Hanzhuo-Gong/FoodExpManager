@@ -29,6 +29,11 @@ class ItemListViewController: SwipeTableViewController {
         // Do any additional setup after loading the view.
         
         tableView.rowHeight = 80.0
+        
+        // hide on keyboard when tapping outside
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
         //loadItems()
         //print("Item dataPath: \(dataFilePath)")
     }
@@ -129,6 +134,7 @@ class ItemListViewController: SwipeTableViewController {
     }
     
 }
+
 /*
 //NARK: Swipe Cell Deletegate Methods
 extension ItemListViewController: SwipeTableViewCellDelegate {
@@ -165,6 +171,9 @@ extension ItemListViewController: UISearchBarDelegate {
         let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
         
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        
+        // hide keyboard
+        view.endEditing(true)
         
         loadItems(with: request, predicate: predicate)
     }

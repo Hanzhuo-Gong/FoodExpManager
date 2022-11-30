@@ -57,6 +57,11 @@ class AddItemDetailViewController: UIViewController {
         quantityTextField.text = "1"
         categoryTextField.text = categoryName
         
+        // hide on keyboard when tapping outside
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+        
         if let prefillName, let prefillLifetime {
             nameTextField.text = prefillName
             freshLifetimeTextField.text = prefillLifetime
@@ -280,8 +285,14 @@ extension AddItemDetailViewController: UITextFieldDelegate {
 
         return newString.count <= maxLength
     }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+     
 }
-
 
 //MARK: date extension
 extension TimeZone {
