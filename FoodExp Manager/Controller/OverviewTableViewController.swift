@@ -26,39 +26,6 @@ class OverviewTableViewController: SwipeTableViewController {
         
     }
     
-    /*
-    //MARK: Local Notification
-    func localNotificationSetUp() {
-        
-        // ask for user's permission
-        let center = UNUserNotificationCenter.current()
-        
-        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
-            
-        }
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Hey I'm a notification!"
-        content.body = "Look at me!"
-        
-        // Create the nofitication trigger
-        let date = Date().addingTimeInterval(5)
-        
-        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-        
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        
-        // Create the request
-        let uuidString = UUID().uuidString
-        let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-        
-        //Register the request
-        center.add(request) { (error) in
-            print(error)
-        }
-    }
-    */
-    
     // pull to refresh
     @IBAction func refreshTable(_ sender: UIRefreshControl) {
         loadItem()
@@ -82,6 +49,10 @@ class OverviewTableViewController: SwipeTableViewController {
             print("Error fetching data from context \(error)")
         }
         tableView.reloadData()
+    }
+    
+    @IBAction func refreshBtnPressed(_ sender: UIBarButtonItem) {
+        loadItem()
     }
     
     func sortFoodArray(_ sampleFoodArray: [Food]) -> [Food] {
@@ -177,3 +148,36 @@ class OverviewTableViewController: SwipeTableViewController {
         return tempString
     }
 }
+
+/*
+//MARK: Local Notification
+func localNotificationSetUp() {
+    
+    // ask for user's permission
+    let center = UNUserNotificationCenter.current()
+    
+    center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+        
+    }
+    
+    let content = UNMutableNotificationContent()
+    content.title = "Hey I'm a notification!"
+    content.body = "Look at me!"
+    
+    // Create the nofitication trigger
+    let date = Date().addingTimeInterval(5)
+    
+    let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+    
+    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+    
+    // Create the request
+    let uuidString = UUID().uuidString
+    let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+    
+    //Register the request
+    center.add(request) { (error) in
+        print(error)
+    }
+}
+*/
