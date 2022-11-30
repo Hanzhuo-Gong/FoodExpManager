@@ -110,7 +110,7 @@
                                                     <action selector="shareBtnPressed:" destination="2bM-Yv-UBf" eventType="touchUpInside" id="Fg0-TG-aPH"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZiI-KY-qnF">
+                                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZiI-KY-qnF">
                                                 <rect key="frame" x="155" y="0.0" width="155" height="40"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Favorite"/>
@@ -550,6 +550,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <imageView key="tableFooterView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="under-construction" id="Bu1-g0-edQ">
+                            <rect key="frame" x="0.0" y="121.66666793823242" width="390" height="364"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ifz-7D-Swq">
                                 <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
@@ -649,6 +653,7 @@
         <image name="category-icon" width="32" height="32"/>
         <image name="favorite-icon" width="32" height="32"/>
         <image name="overview-icon" width="32" height="32"/>
+        <image name="under-construction" width="1063.1231689453125" height="1264.0040283203125"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
