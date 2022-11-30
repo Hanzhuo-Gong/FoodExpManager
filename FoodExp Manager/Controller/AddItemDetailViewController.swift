@@ -16,7 +16,9 @@ class AddItemDetailViewController: UIViewController {
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var nameErrorLabel: UILabel!
     @IBOutlet weak var freshLifetimeTextField: UITextField!
+    @IBOutlet weak var expErrorLabel: UILabel!
     
     private let notificationPublisher = NotificationPublisher()
     let datePicker = UIDatePicker()
@@ -29,10 +31,23 @@ class AddItemDetailViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     
+    private let validation: AddItemValidationService
+    
+    init(validation: AddItemValidationService) {
+        self.validation = validation
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.validation = AddItemValidationService()
+        super.init(coder: coder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElements()
         createDatepicker()
+        quantityTextField.delegate = self
         //print("page food array: \(categoryFoodArray ?? [])")
     }
     
@@ -45,6 +60,8 @@ class AddItemDetailViewController: UIViewController {
         if let prefillName, let prefillLifetime {
             nameTextField.text = prefillName
             freshLifetimeTextField.text = prefillLifetime
+            nameErrorLabel.isHidden = true
+            expErrorLabel.isHidden = true
             
             let today = Date()
             let expirationDate = Calendar.current.date(byAdding: .day, value: Int(prefillLifetime)!, to: today)
@@ -84,16 +101,26 @@ class AddItemDetailViewController: UIViewController {
         
         expirationDateTextField.text = formatter.string(from: datePicker.date)
         
-        //Testing for expiration date
-        formatter.dateStyle = .short
-        let expirationDateShort = formatter.string(from: datePicker.date)
-        errorLabel.text = expirationDateShort
-        
         let currentDate = Date()
         
         // Difference in day
         let diffInDays = Calendar.current.dateComponents([.day], from: currentDate, to: datePicker.date).day! + 1
         freshLifetimeTextField.text = String(diffInDays)
+        
+        if let expfield = expirationDateTextField.text {
+            if expfield.count > 0 && diffInDays > 0 {
+                expErrorLabel.isHidden = true
+            }
+            else if expfield.count == 0 {
+                expErrorLabel.isHidden = false
+            }
+            
+            if diffInDays <= 0 {
+                expErrorLabel.isHidden = false
+                expErrorLabel.text = "Past date selected, please select a valid date"
+            }
+        }
+        
         
         self.view.endEditing(true)
     }
@@ -107,52 +134,71 @@ class AddItemDetailViewController: UIViewController {
     }
     
     @IBAction func addBtnPressed(_ sender: Any) {
+        let maxnumber = 99999
         var temp = Int(quantityTextField.text ?? "0")
-        temp! += 1
+        if (temp! < maxnumber) {
+            temp! += 1
+        }
         quantityTextField.text = String(temp!)
     }
     
     @IBAction func submitBtnPressed(_ sender: UIButton) {
-        //if let
-        let uuid = UUID().uuidString
-        if let name = nameTextField.text,
-           let quantity = quantityTextField.text,
-           let lifetime = freshLifetimeTextField.text,
-           let expirationDate = expirationDateTextField.text {
-             
-            let newFood = Food(context: self.context)
-            newFood.id = uuid
-            newFood.name = name
-            newFood.quantity = quantity
-            newFood.lifetime = lifetime
-            newFood.expirationDate = expirationDate
-            newFood.parentCategory = self.selectedCategoryInDetailPage
+        
+        do {
+            //Check validation
+            let itemName = try self.validation.validateItemName(nameTextField.text!)
+            let itemExpirationDate = try self.validation.validateExpirationdate(expirationDateTextField.text!)
+            let itemQuantity = try self.validation.validateQuantity(quantityTextField.text!)
             
-            self.saveItems()
-            
-            if Int(lifetime) ?? 0 <= 0 {
-                print("Food will expired today, no reminder needed")
-            }
-            else {
-                var reminderTimeInterval = 1
-                let secondsInADay = 86400
-                let lifeTimeInterval = Int(lifetime)! * secondsInADay
-                let bodyMessage = "\(nameTextField.text ?? "Food") will expire soon. If the item still there, Please check on Overview to view the expiration date"
-                // if the lifetime greater than 3, remind when 3 days left, else remind when 1 day left
-                let reminderday = Int(lifetime) ?? 1 > 3 ? 3 : 1
-                let reminderdayTimeInterval = reminderday * secondsInADay
-                reminderTimeInterval = lifeTimeInterval - reminderdayTimeInterval
+            let uuid = UUID().uuidString
+            let name = itemName
+            let quantity = itemQuantity
+            let expirationDate = itemExpirationDate
+            if let lifetime = freshLifetimeTextField.text {
+                 
+                let newFood = Food(context: self.context)
+                newFood.id = uuid
+                newFood.name = name
+                newFood.quantity = quantity
+                newFood.lifetime = lifetime
+                newFood.expirationDate = expirationDate
+                newFood.parentCategory = self.selectedCategoryInDetailPage
                 
-                if(reminderTimeInterval <= 0) {
-                    reminderTimeInterval = 1
+                self.saveItems()
+                
+                if Int(lifetime) ?? 0 <= 0 {
+                    print("Food will expired today, no reminder needed")
+                }
+                else {
+                    var reminderTimeInterval = 1
+                    let secondsInADay = 86400
+                    let lifeTimeInterval = Int(lifetime)! * secondsInADay
+                    let bodyMessage = "\(nameTextField.text ?? "Food") will expire soon. If the item still there, Please check on Overview to view the expiration date"
+                    // if the lifetime greater than 3, remind when 3 days left, else remind when 1 day left
+                    let reminderday = Int(lifetime) ?? 1 > 3 ? 3 : 1
+                    let reminderdayTimeInterval = reminderday * secondsInADay
+                    reminderTimeInterval = lifeTimeInterval - reminderdayTimeInterval
+                    
+                    if(reminderTimeInterval <= 0) {
+                        reminderTimeInterval = 1
+                    }
+                    
+                    notificationPublisher.sendNotification(title: "Reminder", body: bodyMessage , badge: 1, delayInterval: reminderTimeInterval)
+                    
                 }
                 
-                notificationPublisher.sendNotification(title: "Reminder", body: bodyMessage , badge: 1, delayInterval: reminderTimeInterval)
-                
             }
+            performSegue(withIdentifier: "ItemAddedFromCustom", sender: self)
             
+        } catch {
+            let errorAlert = UIAlertController(title: "Not able to Submit", message: "Please make sure all fields have valid information", preferredStyle: .alert)
+            let errorAction = UIAlertAction(title: "Dismiss", style: .default)
+            errorAlert.addAction(errorAction)
+            self.present(errorAlert, animated: true, completion: nil)
         }
-        performSegue(withIdentifier: "ItemAddedFromCustom", sender: self)
+        
+        
+        
         
     }
     
@@ -170,7 +216,72 @@ class AddItemDetailViewController: UIViewController {
             print("Error saving context \(error)")
         }
     }
+    
+    
+    
+    @IBAction func nameChanged(_ sender: Any) {
+        if let namefield = nameTextField.text {
+            nameErrorLabel.isHidden = (namefield.count == 0) ? false : true
+        }
+    }
+    
+    /*
+    @IBAction func expChanged(_ sender: Any) {
+        if let expfield = expirationDateTextField.text {
+            if expfield.count == 0 {
+                expErrorLabel.isHidden = false
+                expErrorLabel.text = "Required"
+            }
+            else {
+                expErrorLabel.isHidden = true
+            }
+        }
+        
+        
+        let dateFormmater = DateFormatter()
+
+        dateFormmater.dateStyle = .long
+        dateFormmater.timeStyle = .none
+
+        if let validDate = dateFormmater.date(from: expirationDateTextField.text ?? "") {
+            if validDate != nil {
+                expErrorLabel.isHidden = false
+                expErrorLabel.text = "Invalid expiration date entered. Please use the date picker, or enter a valid date (ex November 22 2022)"
+            }
+            else {
+                expErrorLabel.isHidden = true
+            }
+        }
+        
+    }
+     */
+    
+    func calculateDayDifference(_ sampleDate: String) -> Int {
+        let dateFormmater = DateFormatter()
+        dateFormmater.dateStyle = .long
+        dateFormmater.timeStyle = .none
+        
+        let expirationDate = dateFormmater.date(from: sampleDate) ?? Date()
+        let currentDate = Date()
+        
+        // Difference in day
+        let diffInDays = Calendar.current.dateComponents([.day], from: currentDate, to: expirationDate).day! + 1
+            
+        return diffInDays
+    }
 }
+
+extension AddItemDetailViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 5
+        let currentString = (textField.text ?? "") as NSString
+        let newString = currentString.replacingCharacters(in: range, with: string)
+
+        return newString.count <= maxLength
+    }
+}
+
 
 //MARK: date extension
 extension TimeZone {

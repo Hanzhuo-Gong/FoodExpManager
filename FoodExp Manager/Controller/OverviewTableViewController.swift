@@ -14,6 +14,7 @@ class OverviewTableViewController: SwipeTableViewController {
     var foodArray = [Food]()
     var sortedFoodArray = [Food]()
     
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     
@@ -57,6 +58,7 @@ class OverviewTableViewController: SwipeTableViewController {
         }
     }
     */
+    
     // pull to refresh
     @IBAction func refreshTable(_ sender: UIRefreshControl) {
         loadItem()
