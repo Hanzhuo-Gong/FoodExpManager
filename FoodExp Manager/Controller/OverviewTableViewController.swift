@@ -73,8 +73,11 @@ class OverviewTableViewController: SwipeTableViewController {
         let request : NSFetchRequest<Food> = Food.fetchRequest()
         do {
             foodArray = try context.fetch(request)
-            sortedFoodArray = sortFoodArray(foodArray)
-            foodArray = sortedFoodArray
+            if foodArray.count > 0 {
+                sortedFoodArray = sortFoodArray(foodArray)
+                foodArray = sortedFoodArray
+            }
+            
         } catch {
             print("Error fetching data from context \(error)")
         }
