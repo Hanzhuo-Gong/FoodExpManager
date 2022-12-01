@@ -133,9 +133,19 @@ extension FavoriteAddItemViewController: UIPickerViewDelegate, UIPickerViewDataS
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        categoryTextField.text = categoryNameArray[row]
-        categoryTextField.resignFirstResponder()
-        selectedIndex = row
-        errorTextLabel.isHidden = true
+        if categoryNameArray.count > 0 {
+            categoryTextField.text = categoryNameArray[row]
+            categoryTextField.resignFirstResponder()
+            selectedIndex = row
+            errorTextLabel.isHidden = true
+        } else {
+            let errorAlert = UIAlertController(title: "Not able to Submit", message: "Please make sure you have at least one category to add the item", preferredStyle: .alert)
+            let errorAction = UIAlertAction(title: "Dismiss", style: .default)
+            errorAlert.addAction(errorAction)
+            categoryTextField.resignFirstResponder()
+            self.present(errorAlert, animated: true, completion: nil)
+            
+        }
+        
     }
 }
