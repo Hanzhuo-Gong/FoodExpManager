@@ -21,6 +21,7 @@
 		644B9DB5293496370091677E /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9DB4293496370091677E /* FavoriteTableViewController.swift */; };
 		644B9DBB2935C0E70091677E /* NotificationPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B9DBA2935C0E70091677E /* NotificationPublisher.swift */; };
 		648A62D92936AA6900C3DF5D /* AddItemValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648A62D82936AA6900C3DF5D /* AddItemValidationService.swift */; };
+		648A62DB29387C6C00C3DF5D /* FavoriteAddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648A62DA29387C6C00C3DF5D /* FavoriteAddItemViewController.swift */; };
 		64D5108D28FD1200003B2E30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5108C28FD1200003B2E30 /* AppDelegate.swift */; };
 		64D5108F28FD1200003B2E30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5108E28FD1200003B2E30 /* SceneDelegate.swift */; };
 		64D5109128FD1200003B2E30 /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5109028FD1200003B2E30 /* ItemListViewController.swift */; };
@@ -57,6 +58,7 @@
 		644B9DB4293496370091677E /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		644B9DBA2935C0E70091677E /* NotificationPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPublisher.swift; sourceTree = "<group>"; };
 		648A62D82936AA6900C3DF5D /* AddItemValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemValidationService.swift; sourceTree = "<group>"; };
+		648A62DA29387C6C00C3DF5D /* FavoriteAddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAddItemViewController.swift; sourceTree = "<group>"; };
 		64D5108928FD1200003B2E30 /* FoodExp Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FoodExp Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D5108C28FD1200003B2E30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64D5108E28FD1200003B2E30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				644B9D9A292D9E500091677E /* AddItemDetailViewController.swift */,
 				644B9DB22934961E0091677E /* OverviewTableViewController.swift */,
 				644B9DB4293496370091677E /* FavoriteTableViewController.swift */,
+				648A62DA29387C6C00C3DF5D /* FavoriteAddItemViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				64D510CC290A4E07003B2E30 /* SwipeTableViewController.swift in Sources */,
 				648A62D92936AA6900C3DF5D /* AddItemValidationService.swift in Sources */,
 				64D5108F28FD1200003B2E30 /* SceneDelegate.swift in Sources */,
+				648A62DB29387C6C00C3DF5D /* FavoriteAddItemViewController.swift in Sources */,
 				644B9D9B292D9E500091677E /* AddItemDetailViewController.swift in Sources */,
 				644B9D99292D9BA40091677E /* AddItemTableViewController.swift in Sources */,
 			);
@@ -538,7 +542,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 24SQSG9LRD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "FoodExp Manager/Info.plist";
@@ -551,7 +555,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.hanzhuogong.FoodExp-Manager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -567,7 +571,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 24SQSG9LRD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "FoodExp Manager/Info.plist";
@@ -580,7 +584,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.hanzhuogong.FoodExp-Manager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

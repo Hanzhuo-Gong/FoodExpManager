@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import CoreData
 
 //TODO: write the update button for edit
 
@@ -26,6 +27,8 @@ class ItemDetailViewController: UIViewController {
     let datePicker = UIDatePicker()
     let db = Firestore.firestore()
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,11 +114,8 @@ class ItemDetailViewController: UIViewController {
         if value > 1 {
             tempString = "\(String(value)) days left before expiration"
         }
-        else if value < 0 {
+        else if value <= 0 {
             tempString = "Food already expired"
-        }
-        else if value == 0 {
-            tempString = "Food will expire today"
         }
         else {
             tempString = "\(String(value)) day left before expiration"
@@ -174,6 +174,28 @@ class ItemDetailViewController: UIViewController {
          
     }
     @IBAction func FavoriteBtnPressed(_ sender: UIButton) {
-        print("favorite button pressed")
+        
+        //TODO: Add validation when have time
+        let newFavoriteFood = FavoriteFood(context: self.context)
+        newFavoriteFood.name = selectedFood?.name
+        newFavoriteFood.quantity = selectedFood?.quantity
+        newFavoriteFood.lifetime = selectedFood?.lifetime
+        //self.favroiteFoodArray.append(newCategory)
+        self.saveFavoriteFood()
+        
+        let confirmAlert = UIAlertController(title: "Succeed!", message: "", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Dismiss", style: .default)
+        confirmAlert.addAction(confirmAction)
+        self.present(confirmAlert, animated: true, completion: nil)
     }
+    
+    func saveFavoriteFood() {
+        
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+    }
+
 }
