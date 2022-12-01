@@ -19,6 +19,7 @@ class AddItemDetailViewController: UIViewController {
     @IBOutlet weak var nameErrorLabel: UILabel!
     @IBOutlet weak var freshLifetimeTextField: UITextField!
     @IBOutlet weak var expErrorLabel: UILabel!
+    @IBOutlet weak var submitBtn: UIButton!
     
     private let notificationPublisher = NotificationPublisher()
     let datePicker = UIDatePicker()
@@ -56,6 +57,7 @@ class AddItemDetailViewController: UIViewController {
         errorLabel.alpha = 0
         quantityTextField.text = "1"
         categoryTextField.text = categoryName
+        submitBtn.layer.cornerRadius = submitBtn.frame.height / 2
         
         // hide on keyboard when tapping outside
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
