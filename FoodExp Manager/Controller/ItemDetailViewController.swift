@@ -174,7 +174,6 @@ class ItemDetailViewController: UIViewController {
          
     }
     @IBAction func FavoriteBtnPressed(_ sender: UIButton) {
-        print("favorite button pressed")
         
         //TODO: Add validation when have time
         let newFavoriteFood = FavoriteFood(context: self.context)
@@ -183,6 +182,11 @@ class ItemDetailViewController: UIViewController {
         newFavoriteFood.lifetime = selectedFood?.lifetime
         //self.favroiteFoodArray.append(newCategory)
         self.saveFavoriteFood()
+        
+        let confirmAlert = UIAlertController(title: "Succeed!", message: "", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Dismiss", style: .default)
+        confirmAlert.addAction(confirmAction)
+        self.present(confirmAlert, animated: true, completion: nil)
     }
     
     func saveFavoriteFood() {
